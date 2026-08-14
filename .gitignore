@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Competition downloads and generated archives
+kaggriculture.zip
+submission/*.tar.gz
+
+# Large replay files; conclusions belong in docs/reviews
+research/replays/*.json
+
+# Raw/public research materials retained locally; Git keeps the synthesized SUMMARY
+research/forum/
+research/notebooks/
+research/notes/
+research/agents/hamburger_overlay.py
+topics.json
+
+# Local validation output
+validation_*.txt
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

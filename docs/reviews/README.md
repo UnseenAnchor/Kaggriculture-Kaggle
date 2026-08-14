@@ -1,0 +1,11 @@
+# 实验与提交复盘索引
+
+## 提交复盘
+
+- [SUBMISSION_REVIEW_55501712](submissions/SUBMISSION_REVIEW_55501712.md)
+
+## 迭代复盘
+
+- [ITERATION_V4_ADAPTIVE_BASELINE](iterations/ITERATION_V4_ADAPTIVE_BASELINE.md)
+
+新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
