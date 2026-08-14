@@ -7,5 +7,6 @@
 ## 迭代复盘
 
 - [ITERATION_V4_ADAPTIVE_BASELINE](iterations/ITERATION_V4_ADAPTIVE_BASELINE.md)
+- [ITERATION_V5A_YARN_SCALING](iterations/ITERATION_V5A_YARN_SCALING.md)
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。

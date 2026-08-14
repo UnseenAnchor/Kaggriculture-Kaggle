@@ -150,18 +150,20 @@ def agent(obs, config=None):
     carried_sheep = sum(inv.get("SHEEP", 0) for inv in invs)
     carried_geese = sum(inv.get("GOOSE", 0) for inv in invs)
     animals_count = cows + sheep + geese
-    if 1 <= day <= 22 and hour == 0:
+    if 1 <= day <= 24 and hour == 0:
         demand_cow_target = 3 + min(5, milk_demand)
-        demand_sheep_target = 2 + min(4, yarn_count * 2)
+        # v5-A: multiple Yarn Stores drain 12 wool/day each. The v4 cap of six
+        # sheep under-produced in episode 92927508 (four Yarn Stores).
+        demand_sheep_target = 2 + min(8, yarn_count * 2)
         demand_goose_target = min(3, egg_demand)
         cow_target = min(demand_cow_target, 1 + day // 3)
-        sheep_target = min(demand_sheep_target, 2 + day // 4)
+        sheep_target = min(demand_sheep_target, 2 + day // 3)
         goose_target = min(demand_goose_target, max(0, (day - 5) // 3))
-        if cows + shed.get("COW", 0) + carried_cows < cow_target and money >= 1200:
+        if day <= 22 and cows + shed.get("COW", 0) + carried_cows < cow_target and money >= 1200:
             order("BUY_ANIMAL", "COW", 1); money -= 400
         if sheep + shed.get("SHEEP", 0) + carried_sheep < sheep_target and money >= 1300:
             order("BUY_ANIMAL", "SHEEP", 1); money -= 500
-        if geese + shed.get("GOOSE", 0) + carried_geese < goose_target and money >= 900:
+        if day <= 22 and geese + shed.get("GOOSE", 0) + carried_geese < goose_target and money >= 900:
             order("BUY_ANIMAL", "GOOSE", 1); money -= 300
 
     # -- feed security --

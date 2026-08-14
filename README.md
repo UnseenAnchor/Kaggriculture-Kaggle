@@ -49,8 +49,8 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] v4：作物限额、商店需求适配、动态清仓、优先级调度
 - [x] 提交 v4 并下载首个 Public replay
 - [x] 完成 submission 55501712 线上复盘
-- [ ] 从 episode 92927508 提取可复现公开 action tape
-- [ ] v5-A：只扩大高 Yarn 需求下的 sheep target，做单变量反事实
+- [x] 从 episode 92927508 提取可复现公开 action tape
+- [x] v5-A：高 Yarn 需求 sheep scaling；线上 tape 0W-2L → 2W-0L，已通过提交闸门
 - [ ] v5-B：只延长 strawberry 补种窗口，评估 day26–29 收益
 - [ ] 淘汰 wheat BUY/SELL 往返造成的 market-order 浪费
 - [ ] 新候选通过固定 seeds、双 seat、线上 replay tape 三重闸门后才提交
