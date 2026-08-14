@@ -21,6 +21,8 @@ def play(task):
 
 def main():
     candidates = [
+        str((ROOT / "research/agents/online/episode_92971175_opponent.py").resolve()),
+        str((ROOT / "research/agents/online/episode_92967433_opponent.py").resolve()),
         str((ROOT / "research/agents/kaito_v27_midgame_reset.py").resolve()),
         str((ROOT / "research/agents/hamburger_anchor.py").resolve()),
     ]
