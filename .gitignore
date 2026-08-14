@@ -18,6 +18,7 @@ research/agents/hamburger_overlay.py
 research/agents/hamburger_candidates/
 research/agents/hamburger_controls/
 research/agents/route_hybrids/
+research/agents/care_candidates/
 research/leaderboard/
 topics.json
 
