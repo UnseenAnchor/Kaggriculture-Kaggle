@@ -5,8 +5,9 @@
 - 日期：2026-08-14
 - 文件：`submission/main.py`
 - 描述：`v4 adaptive demand + priority scheduler; seeded 16/16 vs starter`
-- Public rating：**497.4**
-- Public rank：**3184 / 4375**
+- 首局 snapshot：Public rating **497.4**，rank 3184/4375
+- 4局 snapshot：Public rating **664.0**（rating仍会动态变化）
+- Public episodes：4局，**3W-1L**
 - 首个 Public episode：**92927508**
 - 对局：道海孤舟 67,331 vs Madhur Sabherwal 68,198
 - 结果：负，差 **867**（1.27%）
@@ -68,6 +69,17 @@
 2. Strawberry seed 最晚 day15 补充，早期植株衰退后最终仅剩1株；对手仍有15株。
 3. 我方 BUY WHEAT 1,366、SELL WHEAT 1,125，存在大量近零净收益的 market-order 往返。
 4. 仅靠降低 movement 不能取胜；空闲动作说明生产资产不足，而不是单纯路径浪费。
+
+## 后续 Public episodes
+
+| Episode | Seat | 结果 | Margin |
+|---:|---:|---|---:|
+| 92927508 | 0 | Loss | -867 |
+| 92928454 | 0 | Win | +55,158 |
+| 92929391 | 0 | Win | +6,053 |
+| 92930322 | 1 | Win | +12,587 |
+
+首局暴露的高Yarn弱点是真实机制，但v4总体不是崩溃策略；4局样本仍不足以稳定估计rating。
 
 ## 决策
 

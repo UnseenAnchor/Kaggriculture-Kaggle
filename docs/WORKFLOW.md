@@ -24,6 +24,8 @@ D:/ke/python.exe tools/submit.py submission/main.py "<版本与唯一改动>"
 ## 4. 线上复盘
 
 - 等待 status COMPLETE，记录 Public rating / rank。
+- Simulation rating 会持续变化：每个 snapshot 必须同时记录时间、Public episode 数和 W/L/T；禁止把不同时间的 rating 直接作因果对比。
+- 至少在第1个和第5个 Public episode 后各复盘一次；不足5局的结论标记为 provisional。
 - 下载所有新 episode replay；大 JSON 不进 Git。
 - 每个提交新增：`docs/reviews/submissions/SUBMISSION_REVIEW_<ref>.md`。
 - 每个迭代新增或更新：`docs/reviews/iterations/ITERATION_<name>.md`。

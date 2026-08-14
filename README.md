@@ -33,7 +33,8 @@ docs/reviews/iterations/        每轮实验与决策复盘
 
 | # | 日期 | Submission | 描述 | 本地证据 | Public | 排名 | 备注 |
 |---|---|---:|---|---|---:|---:|---|
-| 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **497.4** | **3184/4375** | 首个Public episode输867；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
+| 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
+| 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **703.0**（1局） | 1W-0L | provisional；团队rank 2312/4378；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
 
 ## 关键经验
 
@@ -53,4 +54,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] v5-A：高 Yarn 需求 sheep scaling；线上 tape 0W-2L → 2W-0L，已通过提交闸门
 - [ ] v5-B：只延长 strawberry 补种窗口，评估 day26–29 收益
 - [ ] 淘汰 wheat BUY/SELL 往返造成的 market-order 浪费
-- [ ] 新候选通过固定 seeds、双 seat、线上 replay tape 三重闸门后才提交
+- [x] v5-A通过固定 seeds、双 seat、线上 replay tape三重闸门并提交（55501952）
+- [ ] 等v5-A至少5个Public episodes后再判断，期间不提交v5-B
