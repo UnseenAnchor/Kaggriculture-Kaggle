@@ -37,7 +37,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 |---|---|---:|---|---|---:|---:|---|
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
-| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1288.6**（10局snapshot） | 8W-2L | rank 1414/4396，worst margin -29,636；继续收敛并修复8羊/6牛家族；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
+| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1728.6**（30局snapshot） | 27W-3L | rank 1040/4410，90%胜率；TOP500仍需2434.0；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
 
 ## 关键经验
 
@@ -63,4 +63,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 为episodes 92967433、92971175建立精确失败闸门：active v27为0W-4L
 - [x] 审计8羊/6牛公开路线：线上tape 15W-1L，但对active v27仅7W-9L，拒绝替换
 - [x] relay可行性实验：0W-16L、现金19，确认两条固定tape的资产状态不兼容
-- [ ] 保留55504047 active，继续观察20局rating/rank收敛，不提交未通过闸门的v28
+- [x] 保留55504047观察到30局：27W-3L，rank 1040/4410，仍未TOP500
+- [ ] 为episode 92978681测试唯一变量：将idle hand PASS替换为CARE
+- [ ] CARE候选必须保留现有线上胜局并通过全部失败tape，才考虑第四次提交
