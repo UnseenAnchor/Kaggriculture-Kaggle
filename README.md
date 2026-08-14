@@ -37,7 +37,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 |---|---|---:|---|---|---:|---:|---|
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
-| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **600.0**（validation） | Public 0 | validation self-play通过，等待Public rating收敛；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
+| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1013.0**（4局snapshot） | 4W-0L | rank 1710/4395，worst margin +20,580；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
 
 ## 关键经验
 

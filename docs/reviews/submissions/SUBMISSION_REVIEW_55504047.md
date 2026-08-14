@@ -32,6 +32,25 @@
 
 该局证明提交入口和线上运行正常，但不能用于判断TOP500能力。
 
+## Public snapshot：4局
+
+截至2026-08-14 11:34 UTC：
+
+- Rating：**1013.0**；rank：**1710 / 4395**；
+- Record：**4W-0L**；
+- Margins：+109,079、+59,006、+20,580、+39,048；
+- Mean margin：+56,928；worst：+20,580；
+- TOP500门槛动态更新为2427.4。
+
+| Episode | Seat | Opponent | Result | Margin |
+|---:|---:|---|---|---:|
+| 92962819 | 1 | JoJa | W | +109,079 |
+| 92963734 | 0 | aldoktvns | W | +59,006 |
+| 92964659 | 1 | Yavuz.YILMAZ | W | +20,580 |
+| 92965591 | 0 | ayutin tin | W | +39,048 |
+
+Rating与rank正在收敛，尚未达到10局接受标准。
+
 ## 在线接受标准
 
 - 至少10个Public episodes；
@@ -41,4 +60,4 @@
 
 ## 决策
 
-当前为 **provisional / waiting**：validation已通过，Public episodes仍为0。在获得足够线上证据并完成Git复盘前，不使用剩余2次提交。
+当前为 **provisional / waiting**：validation已通过，Public 4W-0L；继续等待至少10局和rank收敛。在完成最终复盘前，不使用剩余2次提交。
