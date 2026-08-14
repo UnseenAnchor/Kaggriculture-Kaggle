@@ -37,7 +37,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 |---|---|---:|---|---|---:|---:|---|
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
-| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1013.0**（4局snapshot） | 4W-0L | rank 1710/4395，worst margin +20,580；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
+| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1288.6**（10局snapshot） | 8W-2L | rank 1414/4396，worst margin -29,636；继续收敛并修复8羊/6牛家族；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
 
 ## 关键经验
 
@@ -59,5 +59,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 确认TOP500门槛2428.7，并停止用局部启发式修补冲榜
 - [x] 审计公开v27路线：线上tape 12W-0L；公开控制组24W-0L；未见种子对强骨架32W-0L
 - [x] 提交v27 TOP500冲刺候选（55504047）
-- [ ] 持续跟踪55504047到至少10个Public episodes并验证rank ≤ 500
-- [ ] 只根据真实失败添加有归因的稀疏闭环控制器
+- [x] 跟踪55504047到10个Public episodes：8W-2L，rank 1414/4396，尚未TOP500
+- [ ] 为episodes 92967433、92971175建立精确失败闸门
+- [ ] 只根据重复出现的8羊/6牛失败家族添加单一、可归因的稀疏控制器
