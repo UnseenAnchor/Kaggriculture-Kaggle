@@ -15,6 +15,9 @@ research/forum/
 research/notebooks/
 research/notes/
 research/agents/hamburger_overlay.py
+research/agents/hamburger_candidates/
+research/agents/hamburger_controls/
+research/leaderboard/
 topics.json
 
 # Local validation output

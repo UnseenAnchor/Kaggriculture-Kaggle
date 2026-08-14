@@ -1,7 +1,3 @@
-# Public backbone attribution:
-# https://www.kaggle.com/code/kaitofukami/25-27-strict-future-v27-midgame-meta-reset
-# Route lineage and observable behavior attribution are documented in that notebook.
-
 """v27 current-meta midgame reset for Kaggriculture.
 
 Both seats use one coherent fit-only public route selected after the HIRE4
@@ -416,3 +412,4 @@ def agent(obs, configuration=None):
 
 def _kaggle_submission_entrypoint(obs, configuration=None):
     return agent(obs, configuration)
+

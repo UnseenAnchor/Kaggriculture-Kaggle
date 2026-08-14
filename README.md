@@ -22,6 +22,8 @@ agents/main.py                  当前候选 Agent
 agents/archive/                 已冻结的历史候选
 submission/main.py              最近一次实际提交文件
 tools/run_match.py              固定种子、双 seat 本地闸门
+tools/eval_tape_league.py       真实线上对手 tape 联赛
+tools/eval_public_controls.py   公开强策略家族控制组联赛
 tools/analyze_replay.py         线上 episode 复盘工具
 tools/submit.py                 官方 Kaggle CLI 提交入口
 research/                       公开 notebook / 论坛 / replay 研究材料
@@ -31,10 +33,10 @@ docs/reviews/iterations/        每轮实验与决策复盘
 
 ## 提交记录
 
-| # | 日期 | Submission | 描述 | 本地证据 | Public | 排名 | 备注 |
+| # | 日期 | Submission | 描述 | 本地证据 | Public rating | Episodes | 备注 |
 |---|---|---:|---|---|---:|---:|---|
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
-| 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **703.0**（1局） | 1W-0L | provisional；团队rank 2312/4378；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
+| 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
 
 ## 关键经验
 
@@ -42,7 +44,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 2. **商店必须驱动供给**：shops 有放回抽样；固定作物/牲畜上限会在极端需求场景失配。
 3. **限额按 live assets + seeds 计算**：只看种子是否为0会反复补种并砸盘。
 4. **任务优先级必须进入分配评分**：`priority*3 + distance` 明显提高强对抗下限。
-5. **线上首局是晚盘产能不足**：4个Yarn Store时仅6羊，且草莓未在中后期补种；day27后由领先转为落后，最终仅输867。
+5. **局部启发式与精英路线存在数量级差距**：v5-A在线tape联赛10W-2L、worst -39,511；公开v27路线12W-0L、worst +75,207。
 
 ## 下一步
 
@@ -52,7 +54,8 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 完成 submission 55501712 线上复盘
 - [x] 从 episode 92927508 提取可复现公开 action tape
 - [x] v5-A：高 Yarn 需求 sheep scaling；线上 tape 0W-2L → 2W-0L，已通过提交闸门
-- [ ] v5-B：只延长 strawberry 补种窗口，评估 day26–29 收益
-- [ ] 淘汰 wheat BUY/SELL 往返造成的 market-order 浪费
 - [x] v5-A通过固定 seeds、双 seat、线上 replay tape三重闸门并提交（55501952）
-- [ ] 等v5-A至少5个Public episodes后再判断，期间不提交v5-B
+- [x] 确认TOP500门槛2428.7，并停止用局部启发式修补冲榜
+- [x] 审计公开v27路线：线上tape 12W-0L；公开控制组24W-0L；未见种子对强骨架32W-0L
+- [ ] 提交v27 TOP500冲刺候选并持续跟踪到至少10个Public episodes
+- [ ] 只根据真实失败添加有归因的稀疏闭环控制器
