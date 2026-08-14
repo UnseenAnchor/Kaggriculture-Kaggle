@@ -91,13 +91,50 @@ Rating与rank正在收敛，尚未达到10局接受标准。
 
 第三个失败92978681不是8羊/6牛家族，而是与v27高度同构的4羊/8牛路线。其movement同为42.8%，但把约669个PASS替换为CARE（CARE 957 vs 285），最终多卖88 Milk、30 Wool和67 Fertilizer。该公开行为给出一个状态兼容、可单独验证的CARE-repair方向。
 
+## Public snapshot：45局
+
+截至2026-08-14 14:04 UTC，复盘范围为 Public episodes 1–45（截至 `93000180`；查询后新增的 `93001112` 为第46局，不纳入本轮45局闸门）：
+
+- Rating：**1774.6**；rank：**996 / 4421**；
+- Record：**37W-8L-0T**（82.2%胜率）；
+- TOP1000门槛：1771.0，**已进入TOP1000**；TOP500门槛：2435.3，仍未达到；
+- 新增第31–45局：**10W-5L-0T**；mean margin **+5,819**，median **+11,455**，worst **-22,592**；
+- 45局结果由 Kaggle episode replay 逐局核对；rating/rank 仍是动态快照，不能与不同时间直接作因果比较。
+
+| Episode | Seat | Opponent | Result | Margin | Shops（按解锁顺序） |
+|---:|---:|---|:---:|---:|---|
+| 92988954 | 1 | MYOUCER | W | +12,578 | BAKERY×2, PIZZA_SHOP, YARN_STORE, FARMERS_MARKET, PET_CAFE, BRUNCH_SPOT×2 |
+| 92989885 | 1 | Aberrchan | W | +11,455 | FARMERS_MARKET, ICE_CREAM_SHOP, YARN_STORE×2, PET_CAFE, BRUNCH_SPOT×2, PIZZA_SHOP |
+| 92990814 | 1 | Ali Haydar Özdağ | W | +15,314 | PIZZA_SHOP, FARMERS_MARKET, BRUNCH_SPOT, FARMERS_MARKET, SMOOTHIE_SHOP, YARN_STORE, BAKERY, PET_CAFE |
+| 92990803 | 0 | InformaBook2 | L | -18,622 | PIZZA_SHOP, SMOOTHIE_SHOP, PET_CAFE, BAKERY, FARMERS_MARKET, BAKERY, YARN_STORE, BRUNCH_SPOT |
+| 92991754 | 1 | Patrick Joël MAIRLOT-MBEZELE | W | +4,583 | ICE_CREAM_SHOP, YARN_STORE×2, BAKERY, ICE_CREAM_SHOP, SMOOTHIE_SHOP, BAKERY, FARMERS_MARKET |
+| 92992675 | 1 | shiggriculture | L | -22,592 | PET_CAFE, YARN_STORE, PIZZA_SHOP, SMOOTHIE_SHOP, YARN_STORE×2, PIZZA_SHOP, FARMERS_MARKET |
+| 92993619 | 0 | Rajan Nagarajan | W | +24,041 | ICE_CREAM_SHOP, PET_CAFE, SMOOTHIE_SHOP, PIZZA_SHOP, BAKERY, PIZZA_SHOP, BAKERY, FARMERS_MARKET |
+| 92994559 | 0 | Gebreab K. Zewdie | L | -17,713 | SMOOTHIE_SHOP, BAKERY, PIZZA_SHOP, BAKERY, SMOOTHIE_SHOP×3, YARN_STORE, FARMERS_MARKET |
+| 92995487 | 0 | Uvais | L | -666 | SMOOTHIE_SHOP, ICE_CREAM_SHOP, BRUNCH_SPOT, BAKERY, BRUNCH_SPOT, SMOOTHIE_SHOP, BRUNCH_SPOT, YARN_STORE |
+| 92996437 | 1 | Marcus | W | +12,595 | FARMERS_MARKET, BRUNCH_SPOT, BAKERY, ICE_CREAM_SHOP, BAKERY, BRUNCH_SPOT, YARN_STORE×2 |
+| 92996602 | 0 | ╰┈➤ˎˊ˗ www.sleepyai.org | W | +17,569 | PIZZA_SHOP, ICE_CREAM_SHOP, PIZZA_SHOP, BRUNCH_SPOT, PIZZA_SHOP, BAKERY, PIZZA_SHOP, YARN_STORE |
+| 92997365 | 1 | Fajri Yanuar Shiddiq Juanda | L | -21,162 | SMOOTHIE_SHOP×3, PET_CAFE, FARMERS_MARKET, PIZZA_SHOP, BRUNCH_SPOT×2 |
+| 92998312 | 0 | MYOUCER | W | +36,963 | FARMERS_MARKET×3, SMOOTHIE_SHOP, BAKERY, PET_CAFE, PIZZA_SHOP, PET_CAFE |
+| 92999242 | 0 | heinado | W | +30,063 | FARMERS_MARKET, SMOOTHIE_SHOP, BAKERY, SMOOTHIE_SHOP, BRUNCH_SPOT, YARN_STORE, ICE_CREAM_SHOP, BAKERY |
+| 93000180 | 0 | zhangwei02 | W | +2,878 | ICE_CREAM_SHOP, PET_CAFE, PIZZA_SHOP×4, BRUNCH_SPOT, YARN_STORE |
+
+### 新增败局逐局结论
+
+- **92990803 / InformaBook2：** 与 v27 同为 4 sheep / 8 cow 兼容路线，但 CARE 957（v27 为285），并销售更多 Milk/Wool/Fertilizer；最终 +18,622。属于已知 CARE/现金流失败家族，不能据此重开已拒绝的 v29 实验。
+- **92992675 / shiggriculture：** 12 sheep / 6 cow、购买第三块土地，销售约1,473 Wheat 与1,748 Fertilizer；movement 49.6%、PASS 563，明显是更高劳动/肥料现金流路线，最终 +22,592。与已拒绝的 8-sheep/6-cow relay 属同类强供给压力，但不改变 relay 已拒绝结论。
+- **92994559 / Gebreab K. Zewdie：** 与 v27 的 4 sheep / 9 cow 资产和 42.8% movement 高度同构，仅 PASS、DROP、Wheat 买卖等细节不同；当前 replay 不能把差异归因到单一机制，保留为未解释近邻失败。
+- **92995487 / Uvais：** 10 cow / 4 sheep、50.3% movement，销售约871 Wheat 与1,487 Fertilizer，属于扩大动物/肥料供给的独立现金流压力，最终仅 -666。
+- **92997365 / Fajri Yanuar Shiddiq Juanda：** 同为 v27 兼容资产路线，但 CARE 966，销售约479 Wheat、300 Fertilizer、320 Milk、154 Wool；最终 +21,162。再次观察到 CARE/现金流家族，但不撤销 v29 的拒绝。
+
 ## 在线接受标准
 
-- 已达到至少10个Public episodes；
+- 已达到至少10个Public episodes；本次已完成45局 replay 复盘；
 - 首要指标rank ≤ 500：**未达到**；
-- W/L/T稳定性8W-2L：通过继续观察门槛，但不足以宣布TOP500成功；
+- TOP1000：**已达到**（rank 996 / 4421，45局快照）；
+- 45局 W/L/T：**37W-8L-0T**；新15局为10W-5L-0T，稳定性不足以宣布TOP500成功；
 - rating与rank为动态值，所有结论保留episode数量和timestamp。
 
 ## 决策
 
-**保留55504047为active submission，继续收敛。** 30局90%胜率证明主体路线稳定，但rank 1040仍未达到TOP500。8羊/6牛relay已离线拒绝；下一实验只测试hand PASS→CARE这一项状态兼容机制，未通过全部线上胜局回归前不提交第四版。
+**继续保留55504047为active submission，但本轮不提交新版本。** 45局结果已进入TOP1000但距离TOP500仍有约661 rating点，且出现多类独立失败家族。v28 relay 与 v29 CARE 实验均已明确拒绝，不重做；在本复盘完成 Git commit 并 push 前不启动任何新实验。后续若启动实验，必须先写单一假设、固定 seeds、回归闸门，并同时保护现有线上胜局。

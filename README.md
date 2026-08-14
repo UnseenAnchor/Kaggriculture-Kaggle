@@ -37,7 +37,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 |---|---|---:|---|---|---:|---:|---|
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
-| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1728.6**（30局snapshot） | 27W-3L | rank 1040/4410，90%胜率；TOP500仍需2434.0；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
+| 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1774.6**（45局snapshot） | 37W-8L-0T | rank 996/4421，进入TOP1000；TOP500仍需2435.3；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
 
 ## 关键经验
 
@@ -66,4 +66,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 保留55504047观察到30局：27W-3L，rank 1040/4410，仍未TOP500
 - [x] CARE单变量实验：hand-only与all-actor均0W-2L、分数不变，拒绝错误因果假设
 - [x] 92978681完整route为14W-2L-2T，仍被8羊/6牛家族双杀，拒绝替换
-- [ ] 保留55504047继续收敛；只在出现跨多个失败家族且通过正面对照的新路线时考虑第四次提交
+- [x] 完成55504047第31–45局 replay 复盘：新增10W-5L，总计37W-8L-0T，rank 996/4421，进入TOP1000
+- [ ] 保留55504047继续收敛；45局复盘并push前不提交新版本，也不重做v28 relay或v29 CARE实验
