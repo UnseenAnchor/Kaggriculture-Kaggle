@@ -119,6 +119,12 @@ Rating与rank正在收敛，尚未达到10局接受标准。
 | 92999242 | 0 | heinado | W | +30,063 | FARMERS_MARKET, SMOOTHIE_SHOP, BAKERY, SMOOTHIE_SHOP, BRUNCH_SPOT, YARN_STORE, ICE_CREAM_SHOP, BAKERY |
 | 93000180 | 0 | zhangwei02 | W | +2,878 | ICE_CREAM_SHOP, PET_CAFE, PIZZA_SHOP×4, BRUNCH_SPOT, YARN_STORE |
 
+## Public replay：第46局补充
+
+- Episode `93001112`，seat 0，对手 `Roshan Singh`；v27 **W**，margin **+32,980**（127,215 vs 94,235）。
+- Shops：`SMOOTHIE_SHOP×2、BAKERY、YARN_STORE、ICE_CREAM_SHOP×2、PET_CAFE、PIZZA_SHOP`。
+- 该局仍执行 v27 固定路线，未出现新失败机制；将 replay 记录为 45局快照之后的补充证据，不把它的结果混入 45局 rating 快照。
+
 ### 新增败局逐局结论
 
 - **92990803 / InformaBook2：** 与 v27 同为 4 sheep / 8 cow 兼容路线，但 CARE 957（v27 为285），并销售更多 Milk/Wool/Fertilizer；最终 +18,622。属于已知 CARE/现金流失败家族，不能据此重开已拒绝的 v29 实验。
@@ -129,12 +135,12 @@ Rating与rank正在收敛，尚未达到10局接受标准。
 
 ## 在线接受标准
 
-- 已达到至少10个Public episodes；本次已完成45局 replay 复盘；
+- 已达到至少10个Public episodes；45局主复盘已完成，第46局已作为补充 replay 复盘；
 - 首要指标rank ≤ 500：**未达到**；
 - TOP1000：**已达到**（rank 996 / 4421，45局快照）；
-- 45局 W/L/T：**37W-8L-0T**；新15局为10W-5L-0T，稳定性不足以宣布TOP500成功；
+- 45局主快照 W/L/T：**37W-8L-0T**；第46局补充为 W，不改变45局 rating快照；
 - rating与rank为动态值，所有结论保留episode数量和timestamp。
 
 ## 决策
 
-**继续保留55504047为active submission，但本轮不提交新版本。** 45局结果已进入TOP1000但距离TOP500仍有约661 rating点，且出现多类独立失败家族。v28 relay 与 v29 CARE 实验均已明确拒绝，不重做；在本复盘完成 Git commit 并 push 前不启动任何新实验。后续若启动实验，必须先写单一假设、固定 seeds、回归闸门，并同时保护现有线上胜局。
+**继续保留55504047为active submission，本轮优化不形成可提交候选。** 第46局以 +32,980 获胜，但没有新增可利用机制。V30 的需求排序 alpha 变体无改善；公开对手压力清仓候选在已知失败族上退化或不改善，已否决。v28 relay 与 v29 CARE 实验仍明确拒绝，不重做；只有通过多失败族回归和完整本地闸门的候选才进入提交验证。
