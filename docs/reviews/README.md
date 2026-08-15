@@ -15,5 +15,6 @@
 - [ITERATION_V29_CARE_REPAIR](iterations/ITERATION_V29_CARE_REPAIR.md)
 - [ITERATION_V30_DEMAND_SELL](iterations/ITERATION_V30_DEMAND_SELL.md)（需求排序/压力清仓均否决，不提交）
 - [ITERATION_V31_EXTRA_HAND_FERTILIZER](iterations/ITERATION_V31_EXTRA_HAND_FERTILIZER.md)（额外 hand 肥料巡回否决，不提交）
+- [ITERATION_V32_ANIMAL_MIX](iterations/ITERATION_V32_ANIMAL_MIX.md)（羊牛配比及条件切换均否决，不提交）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
