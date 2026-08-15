@@ -19,5 +19,7 @@
 - [ITERATION_V33_YARN_DEMAND_ADAPTER](iterations/ITERATION_V33_YARN_DEMAND_ADAPTER.md)（Yarn需求条件切换无改善，不提交）
 - [ITERATION_V34_LATE_MILK_PRESSURE_STATE_MACHINE](iterations/ITERATION_V34_LATE_MILK_PRESSURE_STATE_MACHINE.md)（晚期动物状态切换无改善，不提交）
 - [ITERATION_V35_PRESSURE_CROP_ROUTE_SWITCH](iterations/ITERATION_V35_PRESSURE_CROP_ROUTE_SWITCH.md)（后半段 crop route 切换破坏依赖，不提交）
+- [ITERATION_V36_PUBLIC_C95_FEED_FERTILIZER](iterations/ITERATION_V36_PUBLIC_C95_FEED_FERTILIZER.md)（公开 C95 feed-first / fertilizer overlay 无失败族改善，不提交）
+- [ITERATION_V37_WHEAT_CASH_GUARD](iterations/ITERATION_V37_WHEAT_CASH_GUARD.md)（对手现金感知 wheat slot guard 无失败族改善，不提交）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。

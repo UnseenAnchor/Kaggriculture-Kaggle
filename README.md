@@ -74,4 +74,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V33 Yarn需求条件动物适配：结果等同v27，未改善失败族，否决
 - [x] V34晚期milk压力状态机：基础闸门通过但失败族胜负不变，否决
 - [x] V35后半段crop route切换：破坏固定 harvest/seed 依赖，否决
+- [x] V36公开C95 feed-first / fertilizer timing overlay：基础闸门通过但三个失败族均未改善，否决
+- [x] V37对手现金感知 wheat slot guard：基础闸门通过但三个失败族均未改善，否决
 - [ ] 保留55504047继续收敛；不重做v28 relay或v29 CARE，只有新候选通过多失败族本地闸门后才提交
