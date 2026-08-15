@@ -27,5 +27,6 @@
 - [ITERATION_V41_OPENING_WHEAT_LIQUIDITY](iterations/ITERATION_V41_OPENING_WHEAT_LIQUIDITY.md)（开局 Wheat 流动性循环未改善任何失败族，否决）
 - [ITERATION_V42_CAPACITY_HAND_SCHEDULER](iterations/ITERATION_V42_CAPACITY_HAND_SCHEDULER.md)（生产/劳动容量调度未改善任何失败族，否决）
 - [ITERATION_V43_FEED_ANIMAL_RESERVE_AUDIT](iterations/ITERATION_V43_FEED_ANIMAL_RESERVE_AUDIT.md)（feed reserve 与扩张无法从完整 route/scheduler 隔离，不创建候选）
+- [ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT](iterations/ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT.md)（完整 Rancher scheduler 弱于 baseline，关闭移植方向）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
