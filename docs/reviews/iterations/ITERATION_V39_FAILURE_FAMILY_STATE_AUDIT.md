@@ -20,6 +20,15 @@ The state snapshots show the divergence is production capacity and working-capit
 
 Episode `92994559` is identified in the submission review as an asset/movement near-neighbor of v27, but its replay artifact is not present in the local `research/agents/online` set. V30 already tested fixed-route demand-aware SELL ordering against this class and found no improvement; the local evidence does not justify inventing a new causal explanation.
 
+## Broader failure cluster
+
+Additional downloaded replays confirm the same partition:
+
+- `92995487`: 10 COW, 50.3% movement, 871 WHEAT sold and 1,487 FERTILIZER sold — production/labor expansion.
+- `92997365` and `92990803`: near-v27 4/8 assets with 957–966 CARE and materially higher MILK/FERTILIZER output — the already rejected CARE family.
+- `92992675`: 12 SHEEP / 6 COW, a third land quadrant, 1,473 WHEAT and 1,748 FERTILIZER sold — the already rejected high-supply relay family.
+- `92994559`: near-identical production with a market timing/SELL advantage — the already rejected V30 class.
+
 ## Decision
 
-No isolated route-level mechanism is supported by this comparison. Fixing the high-supply gap requires the already rejected production/labor/animal changes, while the near-neighbor lacks a locally replayable single-variable trace. Keep 55504047 active, leave `agents/main.py` untouched, and do not submit a new version.
+No isolated route-level mechanism is supported by this comparison. The observed losses partition into closed production/labor, CARE, high-supply, and SELL-timing families. Keep 55504047 active, leave `agents/main.py` untouched, and do not submit a new version until a genuinely new mechanism or new evidence appears.
