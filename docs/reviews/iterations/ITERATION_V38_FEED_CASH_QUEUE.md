@@ -12,3 +12,7 @@ The fixed v27 route can issue `BUY_PRODUCT WHEAT` after optional seed/animal/hir
 - `92967433`, 4 seeds × both seats: `3W-5L-0T`, mean reward `94,816`.
 
 The target family remains a clean loss and the other two families do not improve. V38 is rejected without base-gate expansion; `agents/main.py` and submission 55504047 remain active.
+
+## Dependency audit conclusion
+
+A follow-up before/after audit of steps 168–200 shows why queue order is insufficient. In `92978681`, step 193 begins with about 147 coins while the route requests WHEAT seed 5, STRAWBERRY seed 2, and WHEAT product 2. The route needs the strawberry seed for the next planting steps (206 and 209), so deferring that order would break the fixed field dependency; prioritizing it would instead lose feed. The later failed feed buys are therefore a structural cash/supply deficit, not a resolvable order-slot defect. No additional scheduler is justified without reopening the already rejected production, hand, animal, or cash-liquidation mechanisms.
