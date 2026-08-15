@@ -77,4 +77,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V36公开C95 feed-first / fertilizer timing overlay：基础闸门通过但三个失败族均未改善，否决
 - [x] V37对手现金感知 wheat slot guard：基础闸门通过但三个失败族均未改善，否决
 - [x] V38 feed cash-debt queue scheduler：92978681仍0W-8L且均值下降，否决
+- [x] V39失败族状态审计：高供给差距来自产能/劳动，不支持安全隔离机制；同构近邻缺少本地 replay，不提交
 - [ ] 保留55504047继续收敛；不重做v28 relay或v29 CARE，只有新候选通过多失败族本地闸门后才提交

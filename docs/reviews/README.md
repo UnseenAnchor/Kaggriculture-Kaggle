@@ -22,5 +22,6 @@
 - [ITERATION_V36_PUBLIC_C95_FEED_FERTILIZER](iterations/ITERATION_V36_PUBLIC_C95_FEED_FERTILIZER.md)（公开 C95 feed-first / fertilizer overlay 无失败族改善，不提交）
 - [ITERATION_V37_WHEAT_CASH_GUARD](iterations/ITERATION_V37_WHEAT_CASH_GUARD.md)（对手现金感知 wheat slot guard 无失败族改善，不提交）
 - [ITERATION_V38_FEED_CASH_QUEUE](iterations/ITERATION_V38_FEED_CASH_QUEUE.md)（feed cash-debt queue repair 退化并无失败族改善，不提交）
+- [ITERATION_V39_FAILURE_FAMILY_STATE_AUDIT](iterations/ITERATION_V39_FAILURE_FAMILY_STATE_AUDIT.md)（高供给/同构近邻均无可安全隔离的新机制，不提交）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
