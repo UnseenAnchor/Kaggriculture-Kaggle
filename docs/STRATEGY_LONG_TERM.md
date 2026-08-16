@@ -124,3 +124,10 @@ policy = {
 ## 当前决策
 
 `55504047` 仍是 champion。最新 Public 样本虽出现 0W-8L-2T，但失败仍属于已知结构族，尚无新的可隔离机制。下一次有效进展应是**新的 stateful continuation policy**，不是又一个局部动作补丁。
+
+## 实施状态
+
+- [x] Replay registry：`tools/build_replay_registry.py`
+- [x] 当前 63 个 replay 生成 126 个 seat rows、1,134 个 state snapshots
+- [ ] Typed continuation simulator：先重放 v27 与一个完整高供给路线
+- [ ] 在 simulator 通过资源守恒和 hand identity 校验后，才创建 challenger
