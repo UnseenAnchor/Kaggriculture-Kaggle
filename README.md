@@ -7,6 +7,7 @@ Kaggle 模拟赛实战记录：构建能在 720 回合动态市场中自主生�
 - 截止：2026-09-30 23:59 UTC；每日 5 次提交
 - 官方规则：[`docs/competition/README.md`](docs/competition/README.md)
 - 复盘索引：[`docs/reviews/README.md`](docs/reviews/README.md)
+- 长期优化策略：[`docs/STRATEGY_LONG_TERM.md`](docs/STRATEGY_LONG_TERM.md)
 - 强制工作流：[`docs/WORKFLOW.md`](docs/WORKFLOW.md)
 
 ## 环境

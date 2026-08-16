@@ -1,6 +1,6 @@
 # Session Handoff
 
-Updated: 2026-08-14 14:04 UTC
+Updated: 2026-08-16 00:15 UTC
 
 ## Goal
 
@@ -17,6 +17,7 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 - Submitted artifact: `submission/main.py`
 - Workflow: `docs/WORKFLOW.md`
 - Review index: `docs/reviews/README.md`
+- Long-term strategy: `docs/STRATEGY_LONG_TERM.md`
 
 ## Active submission
 
@@ -46,7 +47,7 @@ The last fully downloaded/reviewed checkpoint is 30 episodes:
 - Mean margin +17,468; median +12,744; worst -29,636
 - Losses: episodes 92967433, 92971175, 92978681
 
-Episodes 31–45 have not yet been downloaded/postmortemed. Do not infer their W/L from rating alone.
+The latest sampled block of ten completed Public replays (`93405504` through `93458883`) was downloaded and reviewed: **0W-8L-2T**, mean margin **-8,058**. This sample is not a replacement for the earlier 45-episode rating snapshot. It contains high-supply, CARE, and a new 5-sheep/9-cow near-neighbor family; none currently yields an isolated mechanism.
 
 ## Submission trajectory
 
@@ -99,14 +100,15 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 3. Do not modify the fixed v27 tape based on action-count correlation alone.
 4. Any fourth submission must solve multiple independent failure families and preserve the existing online wins.
 5. Rating/rank are dynamic; always record timestamp, episode count, W/L/T, margins, and replay evidence.
+6. Long-term development is now champion/challenger plus typed continuation policies; do not create another local overlay without a new state cluster and a two-family causal chain.
 
 ## Exact next action
 
-1. Query all episode IDs for submission 55504047.
-2. Download missing replays for episodes 31–45 into `research/replays/`.
-3. Compute W/L/T, margins, opponent names, seats, shops, and identify every new loss.
-4. Update `SUBMISSION_REVIEW_55504047.md` and `README.md` with the 45-episode evidence and TOP1000 milestone.
-5. Commit and push before beginning another experiment.
+1. Keep `55504047` / `agents/main.py` unchanged.
+2. Maintain the replay registry: download new Public episodes and cluster state/action divergence.
+3. Build the typed continuation simulator described in `docs/STRATEGY_LONG_TERM.md`; first reproduce v27 and one complete high-supply route without raw tape splicing.
+4. Create a candidate only after one mechanism explains at least two independent failure families.
+5. Run the full local gate and commit/push the result before any submission decision.
 
 Useful commands:
 
