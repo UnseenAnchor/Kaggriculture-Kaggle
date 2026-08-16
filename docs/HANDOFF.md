@@ -36,7 +36,9 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 - Candidate: `research/agents/v50_adaptive_replay_policy.py`
 - SHA256: `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`
 - Evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`
-- Status: **PENDING**; keep 55504047 as incumbent reference until COMPLETE and Public replay review.
+- Status: **COMPLETE**, Public score **1028.4** after 4 episodes; record **4W-0L-0T**.
+- First four margins: +68,281, +55,976, +43,739, +38,403.
+- At the same 4-episode checkpoint V27 was approximately 1013.0; do not compare directly with V27's later 45-episode score 1733.1.
 
 ## Latest live snapshot
 
@@ -112,11 +114,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Query submission `55547470` until status is `COMPLETE`.
-2. Record rating/rank and download its first Public replay.
-3. Update `SUBMISSION_REVIEW_55547470.md`, README, and replay registry.
+1. Wait for Public episode 5 for `55547470`.
+2. Record rating/rank with the episode count.
+3. Download and analyze any new replay; registry now contains 67 episodes.
 4. Review after 5 Public episodes before any replacement decision.
-5. Do not start another experiment while V50 is pending; keep `55504047` as incumbent reference.
+5. Do not spend another submission or start a new experiment yet; keep `55504047` as incumbent reference.
 
 Useful commands:
 
