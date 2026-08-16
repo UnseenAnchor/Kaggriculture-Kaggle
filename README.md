@@ -39,7 +39,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
 | 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1774.6**（45局snapshot） | 37W-8L-0T | rank 996/4421，进入TOP1000；TOP500仍需2435.3；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
-| 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **1028.4**（4局） | 4W-0L-0T | 同4局快照略高于v27约1013.0；继续观察第5局；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
+| 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **1993.5**（18局） | 16W-2L-0T | 领先55504047的1737.8约255.7；两败局为93578320/93585555；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
 
 ## 关键经验
 
@@ -91,5 +91,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V47/V48 continuation/容量候选均冻结：未改善高供给与 CARE 失败族
 - [x] V49 structured policy：未通过 Hamburger/失败族 gate，否决
 - [x] V50 adaptive replay policy：starter/Hamburger 16W-0L，三个失败族全部改善，达到可提交状态
-- [x] 提交 V50 challenger `55547470`；前4个 Public episode 为4W-0L，score 1028.4
-- [ ] 等待第5个 Public episode；55504047 暂作 incumbent reference
+- [x] 提交 V50 challenger `55547470`；18个 Public episode 为16W-2L，score 1993.5
+- [x] V50线上 score 超过55504047（1993.5 vs 1737.8）；继续审计两败局并保留v27回滚参考

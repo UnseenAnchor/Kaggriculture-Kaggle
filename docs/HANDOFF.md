@@ -36,9 +36,10 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 - Candidate: `research/agents/v50_adaptive_replay_policy.py`
 - SHA256: `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`
 - Evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`
-- Status: **COMPLETE**, Public score **1028.4** after 4 episodes; record **4W-0L-0T**.
-- First four margins: +68,281, +55,976, +43,739, +38,403.
-- At the same 4-episode checkpoint V27 was approximately 1013.0; do not compare directly with V27's later 45-episode score 1733.1.
+- Status: **COMPLETE**, Public score **1993.5** after 18 episodes; record **16W-2L-0T**.
+- V50 leads 55504047's current **1737.8** by **255.7**.
+- Losses: episode 93578320 margin -28,578; episode 93585555 margin -4,730.
+- V50 is now the leading challenger; keep 55504047 as rollback reference while auditing these losses.
 
 ## Latest live snapshot
 
@@ -114,11 +115,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Wait for Public episode 5 for `55547470`.
-2. Record rating/rank with the episode count.
-3. Download and analyze any new replay; registry now contains 67 episodes.
-4. Review after 5 Public episodes before any replacement decision.
-5. Do not spend another submission or start a new experiment yet; keep `55504047` as incumbent reference.
+1. Audit V50 losses `93578320` and `93585555` against the 16 wins.
+2. Continue collecting the next Public block without changing the submitted artifact.
+3. Compare V50 and 55504047 at equal episode counts when available.
+4. Update the registry after each new replay block; it now contains 81 episodes.
+5. Keep 55504047 as rollback reference; do not spend another submission before the loss mechanism is understood.
 
 Useful commands:
 

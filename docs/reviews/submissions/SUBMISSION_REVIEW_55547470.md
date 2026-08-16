@@ -38,29 +38,34 @@ It does not add hands, switch routes mid-season, splice v27 actions, or use a ca
 
 Full candidate evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`.
 
-## Public snapshot: 4 episodes
+## Public snapshot: 18 episodes
 
-All four Public episodes were wins:
+The first 4 Public episodes were all wins. The next 14 were **12W-2L**, giving V50 an overall **16W-2L-0T** record.
 
-| Episode | Seat | Opponent | Result | Margin |
-|---:|---:|---|:---:|---:|
-| 93570324 | 1 | Dipak_ISM | W | +68,281 |
-| 93571219 | 0 | Abish Pius | W | +55,976 |
-| 93572099 | 0 | Lady and tech | W | +43,739 |
-| 93572980 | 1 | Emanuel Lázaro | W | +38,403 |
+| Block | Record | Mean margin | Worst margin |
+|---|:---:|---:|---:|
+| Episodes 1–4 | 4W-0L-0T | +51,600 | +38,403 |
+| Episodes 5–18 | 12W-2L-0T | +9,626 | -28,578 |
+| All 18 | **16W-2L-0T** | **+18,717** | **-28,578** |
 
-- Record: **4W-0L-0T**
-- Mean margin: **+51,600**
-- Worst margin: **+38,403**
-- Score: **1028.4**
+The two new losses were:
 
-The score is not yet comparable to V27's 45-episode score of 1733.1. At the same 4-episode checkpoint, V27 was approximately 1013.0, so V50 is currently slightly ahead by rating snapshot. Continue to the 5-episode review before making a replacement decision.
+- `93578320` vs Farmer John: `-28,578`. The opponent ran a 17-SHEEP / high-Yarn route; V50's 4-SHEEP route was overtaken from day 14 onward. This is a route-family mismatch.
+- `93585555` vs dupakdungking: `-4,730`. Both sides used nearly the same 8-COW / 4-SHEEP route and ended with the same assets; the small gap appeared from day 7, indicating market/seat timing rather than a broad route failure.
+
+These are different mechanisms. Do not create a local parameter patch or V51 overlay from only these two losses.
+
+Current ratings:
+
+- V50 `55547470`: **1993.5**
+- incumbent `55504047`: **1737.8**
+- V50 lead: **+255.7**
+
+V50 now has enough online evidence to clear the initial sample-size concern. Keep collecting replays, but do not spend another submission or start a new experiment yet.
 
 ## Next action
 
-1. Keep `55547470` active and collect the fifth Public episode.
-2. Record rating/rank with the episode count.
-3. Download and analyze all new replays.
-4. Do not spend another submission or start a new experiment before the 5-episode review.
-
-`55504047` remains the incumbent reference until V50 has enough Public evidence.
+1. Keep `55547470` as the leading challenger and collect the next Public block.
+2. Download and analyze new replays, especially the two loss families.
+3. Compare V50 and 55504047 on the same episode count when available.
+4. Preserve `55504047` as a rollback reference.

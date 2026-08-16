@@ -68,4 +68,4 @@ Evidence: `research/v50_latest_934_results.csv`.
 
 ## Decision
 
-V50 passed the registered local gates, improves all three failure families, and beats V27 on the existing public tape league. It was uploaded as submission **55547470** on 2026-08-16 08:12:26 UTC. The first four Public episodes are **4W-0L-0T**, with mean margin **+51,600** and score **1028.4**. At the same four-episode checkpoint, V27 was approximately 1013.0; the later V27 score 1733.1 is not yet comparable. Keep `55504047` as the incumbent reference until the fifth-episode review.
+V50 passed the registered local gates, improves all three failure families, and beats V27 on the existing public tape league. It was uploaded as submission **55547470** on 2026-08-16 08:12:26 UTC. After 18 Public episodes it is **16W-2L-0T**, score **1993.5**, versus incumbent 55504047 at **1737.8**. The two losses are episodes `93578320` and `93585555`; audit those before spending another submission or changing the route.
