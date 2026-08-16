@@ -1,6 +1,6 @@
 # Session Handoff
 
-Updated: 2026-08-16 00:15 UTC
+Updated: 2026-08-16 16:20 UTC
 
 ## Goal
 
@@ -29,6 +29,13 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 - Exact extracted public source: `research/agents/kaito_v27_midgame_reset.py`
 - Submission review: `docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md`
 - Remaining submissions reported after submit: 2
+
+## Current submit-ready challenger
+
+- Candidate: `research/agents/v50_adaptive_replay_policy.py`
+- SHA256: `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`
+- Evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`
+- Decision: local gate passed; not copied to `submission/main.py`; not uploaded.
 
 ## Latest live snapshot
 
@@ -104,11 +111,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Keep `55504047` / `agents/main.py` unchanged.
-2. Maintain the replay registry: download new Public episodes and cluster state/action divergence.
-3. Build the typed continuation simulator described in `docs/STRATEGY_LONG_TERM.md`; first reproduce v27 and one complete high-supply route without raw tape splicing.
-4. Create a candidate only after one mechanism explains at least two independent failure families.
-5. Run the full local gate and commit/push the result before any submission decision.
+1. Keep `55504047`, `agents/main.py`, and `submission/main.py` unchanged.
+2. V50 is the current submit-ready challenger: `research/agents/v50_adaptive_replay_policy.py`.
+3. Review `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md` and its artifact SHA256.
+4. If approved, copy V50 to `submission/main.py`, run the final artifact/hash check, then use `tools/submit.py`; otherwise keep 55504047 active.
+5. Do not start another parameter experiment: V49 was rejected and V50 passed the registered gate.
 
 Useful commands:
 
@@ -133,5 +140,5 @@ Before adding this handoff, the working tree was clean. Most recent research com
 ## New-session bootstrap prompt
 
 ```text
-切换到 E:\AI-Coding\09-Kaggriculture。先完整读取 AGENTS.md、docs/HANDOFF.md、docs/WORKFLOW.md 和 docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md，然后严格从 HANDOFF 的“Exact next action”继续。不要重新做已拒绝的v28 relay或v29 CARE实验，不要在45局replay复盘并push前提交新版本。
+切换到 E:\AI-Coding\09-Kaggriculture。先读取 AGENTS.md、docs/HANDOFF.md、docs/WORKFLOW.md 和 docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md。V50 已达到可提交状态但尚未上传；不要自动提交，不要修改 active 55504047，除非用户明确批准。
 ```

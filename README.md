@@ -88,5 +88,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 建立 replay registry：63 replay、126 seat rows、1,134 state snapshots
 - [x] 实现 typed continuation trace：v27 与高供给完整 route 校验通过
 - [x] V47/V48 continuation/容量候选均冻结：未改善高供给与 CARE 失败族
-- [ ] 实现非 hand-overlay 的 typed continuation planner；通过多失败族 gate 前不创建新提交候选
-- [ ] 保留55504047继续收敛；不重做v28 relay或v29 CARE，只有新候选通过多失败族本地闸门后才提交
+- [x] V49 structured policy：未通过 Hamburger/失败族 gate，否决
+- [x] V50 adaptive replay policy：starter/Hamburger 16W-0L，三个失败族全部改善，达到可提交状态
+- [ ] 保留55504047为 active；V50 尚未上传，等待提交决定
