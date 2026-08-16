@@ -87,5 +87,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V45最新10局 Public replay：active 为0W-8L-2T；新增5羊/9牛近邻族仍不可单变量归因
 - [x] 建立 replay registry：63 replay、126 seat rows、1,134 state snapshots
 - [x] 实现 typed continuation trace：v27 与高供给完整 route 校验通过
-- [ ] 实现 typed continuation planner；在 planner 通过前不创建 V47 候选
+- [x] V47/V48 continuation/容量候选均冻结：未改善高供给与 CARE 失败族
+- [ ] 实现非 hand-overlay 的 typed continuation planner；通过多失败族 gate 前不创建新提交候选
 - [ ] 保留55504047继续收敛；不重做v28 relay或v29 CARE，只有新候选通过多失败族本地闸门后才提交

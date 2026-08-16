@@ -30,5 +30,7 @@
 - [ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT](iterations/ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT.md)（完整 Rancher scheduler 弱于 baseline，关闭移植方向）
 - [ITERATION_V45_LATEST_PUBLIC_FAILURE_AUDIT](iterations/ITERATION_V45_LATEST_PUBLIC_FAILURE_AUDIT.md)（最新10局为0W-8L-2T，新增近邻族仍不可隔离）
 - [ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE](iterations/ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE.md)（完成 replay registry 与 typed continuation trace，不创建候选）
+- [ITERATION_V47_ANCHORED_EXPANSION](iterations/ITERATION_V47_ANCHORED_EXPANSION.md)（完整扩张 planner 在两个 capital anchor 均输给 v27，冻结）
+- [ITERATION_V48_OPPONENT_CAPACITY_RESPONSE](iterations/ITERATION_V48_OPPONENT_CAPACITY_RESPONSE.md)（响应式第五 hand 在高供给/CARE 族均0W-8L，冻结）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
