@@ -57,9 +57,13 @@ These are different mechanisms. Do not create a local parameter patch or V51 ove
 
 Current ratings:
 
-- V50 `55547470`: **1993.5**
-- incumbent `55504047`: **1737.8**
-- V50 lead: **+255.7**
+- V50 `55547470`: **2069.5** after 57 Public episodes
+- incumbent `55504047`: **1732.9**
+- V50 lead: **+336.6**
+
+The downloaded 57 Public replays are **37W-20L-0T**, mean margin **+6,474**, worst **-28,578**. The newest 39-episode block is 21W-18L with mean margin +824, yet the rating still rose from 1993.5 to 2069.5; this confirms the score is opponent-rating-sensitive, not a raw win-rate display.
+
+The newest losses are mostly small same-route market/seat timing gaps. The two clear expansion losses are `93587364` (opponent 6 COW / 8 SHEEP, margin -14,374) and `93604505` (opponent 6 COW / 8 SHEEP, margin -12,781). Do not turn these into a local parameter patch until the family has a causal mechanism across multiple independent controls.
 
 V50 now has enough online evidence to clear the initial sample-size concern. Keep collecting replays, but do not spend another submission or start a new experiment yet.
 
