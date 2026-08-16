@@ -83,4 +83,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V42生产/劳动容量 hand 调度：starter/Hamburger 无回归，但三个失败族均未改善，否决
 - [x] V43 feed/animal reserve 审计：扩张与完整 scheduler 不可隔离，不创建候选
 - [x] V44完整 Rancher scheduler 对照：vs baseline 0W-8L，关闭 scheduler 移植方向
+- [x] V45最新10局 Public replay：active 为0W-8L-2T；新增5羊/9牛近邻族仍不可单变量归因
 - [ ] 保留55504047继续收敛；不重做v28 relay或v29 CARE，只有新候选通过多失败族本地闸门后才提交

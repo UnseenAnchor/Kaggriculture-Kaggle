@@ -141,6 +141,17 @@ Rating与rank正在收敛，尚未达到10局接受标准。
 - 45局主快照 W/L/T：**37W-8L-0T**；第46局补充为 W，不改变45局 rating快照；
 - rating与rank为动态值，所有结论保留episode数量和timestamp。
 
+## Latest sampled Public replays
+
+The ten newest completed Public replays available on 2026-08-15 (`93405504` through `93458883`) produced **0W-8L-2T** for the active seat, with mean margin **-8,058**. This is a sampled latest block, not a replacement for the earlier 45-episode rating snapshot.
+
+- Four high-supply losses: margins **-19,737, -9,589, -8,110, -14,639**.
+- One CARE-family loss: **-25,224**, with 955 CARE actions.
+- Three marginal near-neighbor losses: **-1,180, -670, -1,428**, with 5 SHEEP / 9 COW and 15 pastures.
+- Two ties.
+
+The new near-neighbor still changes pasture, animal, hire, movement, and Wheat scheduling together; it does not justify a one-sheep or one-pasture overlay.
+
 ## 决策
 
 **继续保留55504047为active submission，本轮优化不形成可提交候选。** 第46局以 +32,980 获胜，但没有新增可利用机制。V30 的需求排序 alpha 变体无改善；公开对手压力清仓候选在已知失败族上退化或不改善，已否决。V31 的额外 hand 肥料巡回虽通过 starter/Hamburger 基础闸门，但在三个失败 tape 上为 3W-5L、0W-8L、3W-5L，否决。V32 的羊牛配比及公开压力条件切换在三个失败 tape 上均为 0W-8L，否决。V33 的 Yarn需求条件切换结果为 5W-3L、0W-8L、3W-5L，未改善失败族，否决。V34 晚期 milk 压力状态机未改变失败族胜负；V35 后半段 crop route 切换破坏 seed/harvest 依赖，均否决。v28 relay 与 v29 CARE 实验仍明确拒绝，不重做；只有通过多失败族回归和完整本地闸门的候选才进入提交验证。
