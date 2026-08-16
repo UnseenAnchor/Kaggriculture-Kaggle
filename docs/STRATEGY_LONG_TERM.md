@@ -129,5 +129,6 @@ policy = {
 
 - [x] Replay registry：`tools/build_replay_registry.py`
 - [x] 当前 63 个 replay 生成 126 个 seat rows、1,134 个 state snapshots
-- [ ] Typed continuation simulator：先重放 v27 与一个完整高供给路线
+- [x] Typed continuation trace：`research/continuation/` 已验证 v27 与高供给完整 route
+- [ ] Typed continuation planner：从状态生成合法 continuation action
 - [ ] 在 simulator 通过资源守恒和 hand identity 校验后，才创建 challenger

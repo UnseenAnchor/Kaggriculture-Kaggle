@@ -29,5 +29,6 @@
 - [ITERATION_V43_FEED_ANIMAL_RESERVE_AUDIT](iterations/ITERATION_V43_FEED_ANIMAL_RESERVE_AUDIT.md)（feed reserve 与扩张无法从完整 route/scheduler 隔离，不创建候选）
 - [ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT](iterations/ITERATION_V44_FULL_SCHEDULER_REFERENCE_AUDIT.md)（完整 Rancher scheduler 弱于 baseline，关闭移植方向）
 - [ITERATION_V45_LATEST_PUBLIC_FAILURE_AUDIT](iterations/ITERATION_V45_LATEST_PUBLIC_FAILURE_AUDIT.md)（最新10局为0W-8L-2T，新增近邻族仍不可隔离）
+- [ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE](iterations/ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE.md)（完成 replay registry 与 typed continuation trace，不创建候选）
 
 新增复盘必须放入对应子目录，并同步更新根 README；禁止只在聊天中保留结论。
