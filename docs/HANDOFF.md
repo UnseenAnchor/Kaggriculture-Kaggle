@@ -115,11 +115,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Audit V50 losses `93587364` and `93604505` against the 16-episode expansion wins.
-2. Continue collecting the next Public block without changing the submitted artifact.
-3. Compare V50 and 55504047 at equal episode counts when available.
-4. Update the registry after each new replay block; it now contains 121 episodes.
-5. Keep 55504047 as rollback reference; do not spend another submission before the loss mechanism is understood.
+1. Keep `55547470` (V50) as the leading challenger; it is already submitted and leads 55504047 by ~336 rating.
+2. V51 expansion-route replacements were all rejected (ITERATION_V51); do not retry bare tape routes or port the V50 execution layer to other tapes.
+3. Continue collecting Public episodes and update the registry (currently 125 episodes).
+4. A new candidate must first explain the 6-COW/8-SHEEP expansion family causally and pass the full local gate without failure-family regression.
+5. Keep 55504047 as rollback reference; do not spend another submission until such a candidate exists.
 
 Useful commands:
 

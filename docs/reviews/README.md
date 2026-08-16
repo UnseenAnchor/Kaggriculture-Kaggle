@@ -33,6 +33,7 @@
 - [ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE](iterations/ITERATION_V46_REPLAY_REGISTRY_TYPED_TRACE.md)（完成 replay registry 与 typed continuation trace，不创建候选）
 - [ITERATION_V49_STRUCTURED_POLICY](iterations/ITERATION_V49_STRUCTURED_POLICY.md)（完整 structured policy 未通过 Hamburger/失败族闸门，否决）
 - [ITERATION_V50_ADAPTIVE_REPLAY_POLICY](iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md)（完整8牛4羊路线通过本地多失败族闸门，已达到可提交状态）
+- [ITERATION_V51_EXPANSION_ROUTE_REPLACEMENT](iterations/ITERATION_V51_EXPANSION_ROUTE_REPLACEMENT.md)（扩张路线替换全部否决：tape 换seed即崩、执行层不可移植、需求选择信息不可行）
 - [ITERATION_V47_ANCHORED_EXPANSION](iterations/ITERATION_V47_ANCHORED_EXPANSION.md)（完整扩张 planner 在两个 capital anchor 均输给 v27，冻结）
 - [ITERATION_V48_OPPONENT_CAPACITY_RESPONSE](iterations/ITERATION_V48_OPPONENT_CAPACITY_RESPONSE.md)（响应式第五 hand 在高供给/CARE 族均0W-8L，冻结）
 
