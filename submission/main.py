@@ -1,13 +1,10 @@
-# Public backbone attribution:
-# https://www.kaggle.com/code/kaitofukami/25-27-strict-future-v27-midgame-meta-reset
-# Route lineage and observable behavior attribution are documented in that notebook.
+"""Lean, conservative Kaggriculture controller.
 
-"""v27 current-meta midgame reset for Kaggriculture.
-
-Both seats use one coherent fit-only public route selected after the HIRE4
-opening became the dominant Top-30 prior. Runtime feedback remains limited to
-actor-local WEED repair and ordering route-existing SELL slots by official
-price impact plus bounded current Town demand. Opponent identity is unused.
+The farm backbone is an 8-cow/4-sheep high-throughput route.  The adaptive
+layer is deliberately narrow: repair weed-blocked productive actions, move an
+already-planned premium-product sale forward by exactly one turn when no town
+demand occurs, repay that move on the original turn, and bank/liquidate only at
+the very end.  Worker inventories are never treated as directly sellable.
 """
 import base64
 import copy
@@ -16,134 +13,142 @@ import math
 import zlib
 
 
-_LEGACY_ACTIONS = json.loads(zlib.decompress(base64.b85decode(
+# Lean 8-cow/4-sheep route selected after comparing the two stronger public
+# candidates. The payload is data only; the adaptive wrapper below is ours.
+_LEAN_ACTIONS = json.loads(zlib.decompress(base64.b64decode(
     (
-    'c-rk<O>Y}nlKd|^^I(#)Z0}8NbEbt+TZSwzG20Lt4a_VSSj--J_qN#ozOqEJij|R(k@;Rxvd1@CCad1}%Z!YS{Plm&{{8nq{_*!e'
-    '&i>`svrm_wKcC$%&i>=~|N7g1Km6h0<3E1?<3IoYKM$XOJ^T6UcJuJR^uteI{`%YH$E#m1ug?}|?{Btei>3MV=bty5PiKqs{eOJk'
-    'Y(6~vdHeI`^6qT$dh+LAHrF>FM}Piwd-LJT`@8WE?*DIb)QhY4fBEuh^!`JCem&c6KHohy^zdQV=h4p&?HhOBd&jO3$8Y&~b9?vm'
-    '<3oo}_C33w()a9|sXqIsFIU$eetY=m-'
-    'IuQuLLNN%rr!GN%lDhZAkiV(ee>%q96kTxKR(_aX4ZMnpT>)Vz2^9fM{|97x4HG6|Nb%<pr<e3aoP7^|I*QOcVA-TGTCJ4aYNG!Q'
-    ')^!^JPs^-eM0SX4^Q(4M4m|d_|G?Ab^{K^Bb-'
-    '2goQH*Hhodroqt^N3&@_LCQ_GG+%ls(=(lCG0xK!qG|64E|PaUW|Zdh;AKh>URhqudWVBK$84f}^|E;}v)Wi&dkfu|3N$00i>ybi'
-    '*Z_WtJjdh`D7w?A!e@2;+|{_U}u_C877{)KA`HG@20f6JvB3f>wvG#H&^v-'
-    'f+q=LA(YfBnGt@sl4vc|kupJ`+E0uD`l&qn+~Pkzo(e_-'
-    'GgRDgWtUg~TV1Z~j|9Yf(GOj6ZZdG_b?V`{Y?O=|{`$FkFh2hJy1Swq0qVf0y7k#y>a16dv+>`=IkMfx*Y4RB7PU-cK!pk=ImswH'
-    '@F>6NUjcEs)0-Oq(;nVFQ_GSvX3~5EY(r7$N&xb%ek}@c@-'
-    '?i+`5iR<F9FJMS39Tu%P{`R?{|`_tz3_OEA)b@4KseCU2D_PQRQ=b~)AGWYK3Xr@|wBDrD<092N*RQ=wtjkCuZ9+76ZYI^-P-'
-    '4np?qZe_H4j9-'
-    'oJ3?R*5!M;|l8S{iERWLjhK9NLcPBH`Gd(mT#M%oJOt9&)wFid_KouJ~0o_`zz8??i^N=>XpvmJUXW}$m`s42J<u121KIst_+id*'
-    'jqKoD@(qC8a<?X)~E-'
-    ')~d<eDgh4ha(nJQM`dDo*m$#g>}0JK(kD{2Y^@yWEG?NgW@)jXiK1{m#emnrsK+o*!;yWkPh1+=fHtS&~9wl|Fy}SNHzpe)DJy*W'
-    '7%E+@yQ|=WTSQx~DX~{#O~}paF6~HbU%z#qMcrDYY9M&ut+f2lE8x0wIU_c0+t>dxWsQqwKFlb+qF{*kc1k<E-'
-    '|<+6u#cdAO3EKD2G3>0^7qIu0sw0;D_PinEwNiz}|8Xf4+w>t=mS6}aTY4`~Y17~;{1X5cwNg>@cOP>gl(nwMo9j2)6w*aghp2>n'
-    'SPhv)*L<nO;k_<=z{4A<y2@WAuz4uG_fPEc&4ZU*QPq!SGNwleO_kV)7c_Az)Ngb(^~d-'
-    'Ew+2gJS_Jjt7z>)lBWPVn{K{d>50KAgq2okbhatBD)B>KTOIKQVJ~=r$?$LJ!Y5EH?eg#Az8GYhba7QIOzed)^F4Hc2c{<*KwXqk'
-    '=1db9=-'
-    'PcnN)Z+%rqMX_OSR6hN~oq9BhyUgMRh#Zlx4&YJAfcRHi8HSV*3Au2h<(}Le5Kg|mCp!cdiU6+>XAQ4D!^UaUBY)WAMIiurr!yfs'
-    'S)ipi*=?E+^-J-=%3zpaMWq}Tr9Q&r`XArN&n=`haI+Kj|uR>EJubr-hQv{ycS9%lG<eh-^9J~*%=#6S002-'
-    'B9vtSAM#&g2tQCP?ToQv>A=3dlsSQ25?&O0=W9r#rCNSqjlcwyM6zs4TaGN+vTRG^eet^|Q_?Sm(?!@^1W(uFCtN4o|+_F!;-'
-    'xcc+tONBSagg<2Cqp!CFp~1cYZx^qTN`#n!yo=ca({A?Zyu`C{1bc8~db&*u?5gyPDRYO);1R@t<q9HWhic_IR4d))m0X$OzP4l3'
-    'l2YruZhU?p23EKDSN9##b5-{#<47tgWY`6=Ce$nrP>3Th7!3$nShYpL{T<Uv$Y+{)aR^?IG3o@`nnZfAX5-'
-    'W>>J&W~ZarrdGWmH5Wfhplt~Z=}S1^l?wRN<l71|uI|AEOmyv>Zg>pRDbhs7sC8}cw2ETJ^<LbQd$b2eN=z_s&F1M1;sl0wNz<+C'
-    '4Mtm7~o%6h7vPGIyAC!_~cb9zHB0zzzyiOf`Z7$VeQ9^>GgVi-@Y+Kc-'
-    '<&jW}I^|k&_X!QSbb^VvGqkv;3%U9M9c+(n3X)^Iwjs?U`eC8iS*1iCsOZGaZkYr3%ffXQ`$2ohsJC^{p(cW~GHm$REBtovDo3R7'
-    'Qr9c*moWS@5uW(8x%a)wxbqF-iK@qHbHZHxK5NbmX3%ame8loIvX@m{~h;mfYVF?vH42{JYzS%M^IV4=PO}#w41DI}PJ$BeAYzUB'
-    '35iLP851rEExpy2aLBrlk3ftHS1jwZmgR@O=EpaEutFul2(R>&`n)yTha;D(2pMgD3-'
-    'apa0nJGDJ5$NB{_u9E*470q5QM4|c=)yp0?CfI9HV9o9WyeC~Z#p<g;LOt<BpbU0Ar<zeF2sFD1WS8k(0HFx-'
-    'kK+1kD{$>hY$`z*7`4U=xR8Y?V9!8`~-H#C~WMCwT-OC@X*|pV>eaq4q{<qm)pEUkibMm^)1poQsma=g~j~xo+jvkfV$i601MMe)'
-    'd2*n3dXEj0Cr1&)<gYyQoLX$yc%fs2Nq9wG5|9eb(YT0WF#uu%&<>@aE;7o-'
-    '%WLxP8nBXGRZ_a5^oklycrhGE*AwlK2Dy~CQeP+nJE{Z_2P3Q-n!ffg)9l=-'
-    '5pAfNXU{Iv26NnR0Y&Jh?#<rNs{pYA%5va4<TftILAr<oUC&2wh*S0VL@<U9=3uHG~g~p%YHm#7w-'
-    'CgcY^gzLWz@af`MWezBp2it2H`$xuxThF2?`&v<Ud@Rt{<bnD%+hLB9gHOoJwpih+#_QM<Qj@g#N$%8~>t0juO|Qf7f3ju!$RWcy'
-    'TKnWDW=h&HFYk<h2?x5$)kgfo`81ax*kB`W*NEx|ZA9ciFPLgguOI}OR}3BHL0WC*@dXhci=JZ~VG@@pxF+cZLHs3{pRE!(o0Nvd'
-    'IPCx8wZCV+0Ra-Rr}HUmYXJHDi(btyE8GIl4h65V;%9n@hR9J%o?fSykY^RaknIfI9-'
-    'TRXS8WsCM2SXV_w)sO@%P4Obws7)fRFvZMF95?cb@J5Bx%w{*<M<Uh{Z+F|U;n(}zJDV6lIrik<s*O;HYUOqV<G-'
-    '{C_e7|GC)tA6S(Eq=il0gg-r^7inQ2VLT?y<j3QH#fEN<P?V!Cxci!$VNL<FWjZ0jWB!)oVL?%uiGo?z8IW3wvx&?gw07A@#k-'
-    '<Weu*)1t`NKD-aaXuve$em;R+woDka{p(kJI`<L72!%krRNTZ9R`=f(kmk%$&MA+H78FKPzbiq<?f@21hF{H9N<y%KI~y-'
-    '?Iv6zXsR84cf1j`5E9&R)qG?xzpm_Zre#p!071g8B&ZUP9}yAvYGNeVyxjipC-'
-    't%=GzB_h_Uj256cD~7%tC#LFz+H$wANpDTl!!jiHEF;Owl;9?l3tE_)pw3?<*!mb_M4AW#vk1MQE&B%28jUm9-'
-    '(fmCTvPBdCUQMQ8Ka3URLqg_1Nj@!knhU*`HbbL-nl+I><INJF$V;wt;^O>Y?zxm043GHroOys~2&66JE?Z;{W;2t<{(CH&O|=RA'
-    'fpZiTCh?z7(rmW}_I7;-+!3)#n*8+`B8_<6h3lhrquTJp^4@>@r?Bb_$irf{TwI(?wIO-'
-    'T5(fj0t0^o|y{M%~nk8x5;01sNnQB_^a*f#zY#3A}D*U1m%sm36RTk&)0=NAhr+-'
-    'Vt(T7(cXzIEcB{JgR72lZt7|T%82@H4|$Et?>E+SEc<<!zs;E&(T?23$o@Cedq!qlz*B8P*7J>*CMs5nJvu&qq#(ViiQ(X!+hEE)'
-    '*i8*VCRx-EP<_-0@g*w>{JoF)AMRy6q9$Hk8cuMj(w{23v!#ZMEnl^6Y#Jbvg!SpWuM|b?&E>66Qltq0CS-'
-    'r%NB%(WUAJ4)oZbhW<0Jo2W#D4(6^Z6zKt`cYwSy|rJVfV(#{xXm`B0LMK+?J7$jwbuq;l+iav$xncW$&^F?GKg6vDJ&8XaqhvWN'
-    '^1`uD=m0UB99AfTmbSmQv7CYaPOsS;*Q1FT#{(eB-#L3F`#4s0&(y+;^6Fit~Pq=5nH_6@+R82HD5&LBdaN^kmz-4?Jo1-'
-    'b2KSUSy)QVC*0wXy48v#VLa#L4#C=qd3-WfJL$oZ<(MiObDD1zCP{VEMtTc+;ms?E&hi@y6l__DU-%~DrCsqkv!7~i^-'
-    'bn5VE)48V_eYS`2S%Vi%LxGOhJePwi%OV5MDa-H$!L~V^>QvSi4_f9O9ff!y-'
-    'M6JQ!G=*y?wm|%4`^%!i=kyR*#&^Zyp*1bEtwuNZd`Xpa@R9q0-'
-    '2W>@JJ5>4NYeI$0F@jp&SM|?*P2WfILj+jf4QHY!^5L8v$4(L8MAo36(30Mc64P80*5J#<Z_$I#4uXUE)=0)w}Qj97JMx`64xi^T'
-    'N>Ep6F;Os2Q6B6ezN(oz!Tg{&y~kcN0#Q3T?F%*-A-'
-    'GxN(rC6m=@~b68n~SL``ugh2Tg5Ge5iTP3uLteb3OAx)04UEC7QRbY<I<*SaPq|0*~COs~kG|bI66*<jIn2$ZpnyZ@%$M)f~LJxQ'
-    'C{!gfp4uADps482qH6k}Xb;$WQTv1;<5fV<Y#{}p9B?OMOGFLqA$$C?%AXE=9C&VfB6jv=6$CKI8-XJpw$Gq<dFb`;YQ7Er-'
-    '4KJzOyv8bKS#Ui5lF(d{s!t2C4(c4B_#t+1DyTv$Q9nwuro|N4c_3t@)gS;zqgRfW<2C7SG)8c!sL)6$duWGdYdj>5x>hWPBE4d='
-    'aafa}tzsIY&zT8O!unZ-fk<3B&SYl7V@;udEnl6T#DxU~0B=0F;JVUT0+c1yjU*yeGmbd~2yIf%BVFt%DkW=o3s@{7Lp{gXKteo#'
-    'o1R`|OlXU2e?c;Xi7#%IYS3=1D3~QlJ1mw=+s~d%MGR}0v=`4N7!ROaDRdH{e#t58aSt_6qEk96%}rFoACb4!Qd9}=QwaR!NP<t0'
-    'uy;;!!MB%*Jq5jHMz>nj!{w}lPN}rnYSo?}Q_QGU1fT-'
-    'vWxIJk(PSVfB#`^IV!*ymAPw-1(A@2zOx;CCK$mPnOR2459N_)B#vElhk%Zk-Ezm8c98lM}fv6)z8HI%@(by9_GDb&WCydB4>sys'
-    'Ol3<EmJqoZ@28-'
-    'G8KG4Ujy_ZNND!+zu5(=seia!Y68BP_sG++l~AcQUTKmwA{aAq1aVrL|lxjIyu44E}gdCm=n=B;Be@+~{~>Ji(O9HA2|B)u<LV`N'
-    '&HZ#S`_E21~7#Z+R>*EUx~@rq-'
-    '}G7Myy^9&KpHU=UO3SEPLzbBbvWhpf8zK1OMML#EYZk2CVyxtHoDyrF#P~E~4+iv<0CK|=7vN&;fdWXI0bJE>}a9X5qtUGx?phL2'
-    'xcP_S2p>-'
-    '5<K_f&|%(^Va3A1YYI8Q)vpn0*Mt_u5(S}@D}&E=!Fr1j@@_wzh|V0g#1)8}AeG57>boGMr~lM+Ao1X2Qt$=F{PWktN~1)rXuCZ)'
-    '1cj3-'
-    'ZJuq|rIf{URTYC9H3)!b8R<Ylr=g)79SPf#cql0BLM3k0NSy7OqCNi~&@)dv<0I38cb@lipE8pIcC9cw5`Ae;w?>)h0`Kx)Ez>5P'
-    'Oc4p_r{D+=4JL`Epgof0djwcV8JaqTF?T*`-VDwV?S1#SR<6qYrm^CwkvPr&aezpSll_cxJ-GD}3>7t|}|pU{)d&Ejy9N^%kGIm&'
-    '}8&`e6WVMd++z(CTRS*f|tsRU2Ul4ivqfT_fOF&phbmzYCywlBp?F$<n2-_A~eS-'
-    'L`!iJneFvh0xyyB`%L(YGjGC}pKMn5yEmFvW=a95yK+a$*Flu%*?Yucc*&J|Y?9e301}whP3DLKXp)3(QrD!(mDxtpJ~t#q#g;ND'
-    '5Cqq6f*rt^MAQ9cikPBaBuqV~gg;kqou=(FgK5#B2!ka`L&2717ShJxNYvayHSzwcE@VV2F`6cpC-'
-    'A6^qLWX*g9KRcZcpvxa8X1pKAiyab`nB6kd!&(cUK_j_h~1avyA*Ggk*Qn({E3G6OSZEIQ+qygg2Y3E8eEGL}OObu3A(1K7xYRa1'
-    'eXcPOB;oh;ls+?|Te8uOKLHp;VJb`SA&PqKq<w&IEi172OAHC;gq^2~Ax13*`D8HpkF%1r#y)J6C%n=XGSKnZs5({uwDl}WZWTHa'
-    '2c6H{<KJ-W)(4BeWG!BeSr9yVZTA|;ZRmDZmhKz&C8JAfttSyNi4k!EO`sO1@8Qm)6zQB-'
-    '6bDuPWtE<Ed$)}FDDAYEjl_n~Dg4Dc8nlQjWw|E@W1W?>T$Luap^Ugb=`iRHWD!&B&G{ig22!gdi47c4JFNK=1>?(`F!VqqRO1}O'
-    '{6^pkein;igvv)~C=4=dxOr}IGr08u$twN2jVo3sqB9g(5qTW4nunZ#B20B5PqXKp`)IZ9J9Vt1yF_Gvn`MH(KIo?XnOE}dLzh7H'
-    'zlBq|vUFD?Cpg+@=aJrobP4i^eAn2Qv$csG?uws+sQTTOcg^~7RW3awJh2$}yw@a>E$S3zhD}nS9_e3)i_Dp#>QJtGze{#(L3+iq'
-    '2fzsffCfYtCFrPyzQ|IA+sjco4rLzZv!6(1zQG0j_`5>Z5k@F5l)-'
-    'TTMv)vDK6OX<iC=VgneA*ufz^!U9=fU81sDNA>e2j5_N9@3^+SE?s<51lRR&SWE3e!rhb*R`!u$>&9>qYD9gNEoOoA@_lT3@GfPK'
-    '>d}3pi0JPttw@GL|<<tE3F=DUA9hWT5f4AIUE-pkkDu(;H`>Fr2iZz7)5*5~+jyLAAn3r9A1NAsb0Ynni4ivQXStQ#v$!dr#|Pu7'
-    'nFS1P)8H-'
-    'gV&3;GyMKSCt?s<wvW!CqC=e@{aLJG6z!Vru_8f>iWZP4|dYs7oVgiCbf|cARUMH0|#X}U0=T6>};vDu9tOTKnM17q2)PFEM?<)>'
-    '|V)E9&!)Ez<2-*lUa(G>yt7xft9<AtQ4LYjsBNIPn8Pr%S2cqaOtBW0b)h8gf>(n@dlobhxHzXf&k>R-v-'
-    '2DGI;?(*N(i*SFzy>*M(ok4?FVYDu{~>&dMXeYwIv)An!4f=F65k=as*fpfXjC3`z}gPj-vznRO`|7661%oeB#M*>-'
-    'v@?~{~jvrY9hAdb8xJ5VbjmloSvpIeY`x%v*scTF_8b^oN(6ynjydE=N-'
-    'oH*g*OPxxM5&57bsMJLcra(|*1;rxDSwVfL&NtJGQtQ&#eo{)x;bSF8!<z4cPDN=Kag$k5yOQ9Rwv7Y^%nwNh6<A0fTDLT5<^}5#'
-    '=1O&*26-'
-    '+yWmC##N>oT~tFEjeqS?|do;Q$dNTt|hP!CDcj?L8gAz6n(14zZL%K8K2mtTPS>_fH+64eBGS}<LQEX$K%8I_y<>9C7*-'
-    'x7E`Eo&yHHyt^L%M$qrUyg!?yXgAnwihCE8C55GQxR9NVgBVa9_vxbRU!f3A{f*13TARnit`DS&BMx8{({VEN^5f6r8SsxEkQd@Q'
-    'MlaGy8b7~e4EKZe_eIZ;nObE^4u|9{-'
-    'kA|n2|^R(#i3+#+6tUN+J<ZMn4~xZ>F%6TDUW!1<q583Jte@H&Pq{ea*yaPglK)4td@>S1n@3p-%X`5uHGhX`><dkd-'
-    'R&*{c+S;+9M$Nn&oq#$^{o201vq!f<}TP3==5833_~VWI)WcD50qD+tiSR+4{DmVYMHrLMJyB_F@Q>enl37=*Bb@rGe>dcG(*Tk<'
-    '}$>!K!NMI}`%5sZSLh7v=Q*#zoPehu0w6PBP{K03wPqBb7CS4tjYLbiPiQh!q7{y6w97EV{smqk5%L{18t(hF8DVy}Q7kYmLcZJ('
-    ';dlqXpM@s+rXX0);6sCWw5^Z^T?0E~5%Fq}M6qoS24ze<si*wOnI)hiPKU;=PUB4IWSE8507PQ~Qq1wxob?bvxra-'
-    '^6t@AOMW*p1P_f{~?CSJXN3fV~v8H>d8U>uUuMVh15-'
-    '_~miOl|4+KWVpT;<guxOo)0gsixu@~>Tj<EGBF#>BLImqQFCXEQI9|~8kzi8PnblidQZQtsTZ9%VFVMHqFkzIE=9g}B2R=ZhUnUt'
-    'G_R;8bQ-A93hr^tk#G(cTA{7BN_$+pTlpLntuFAR!UgGD^ch93t&kC-oiXX?0x<WON=}HlZF(r<N@`BAzOq`!kcscMBrKwh#L^-'
-    'nLsiTbXkq=KPyR{{Rg|+z)iU2t^fAL^#NN3k(^Tu&NeiK(A*)BL)9H#+2Vx#M-%`Om0YI7Igaw%}W8?YVeL_)R!q;l-'
-    'N{GZxJhWnoca*Ma1ZybB%Xe$4S%GG})G$Si%d7K}6jed%&Hx{Wd9o>Z)DB`|m{0Q5OHZ~1$Wx!YnO%uu3!<Ej9TdRyBGW{A&YNB='
-    'G$^%~VZ%KMR%r6pORmE+D(Lqt*vHK3;*ApG=bl)f!n9hKD-!kQQHioTwCGw>V<q;5$eR*d>0a=sBt)?kDow>)r9_G5-'
-    '%?lF*$N^pIwdNuu^1sJed$k}k)!9qGFFTf@$3N6RWeVI=vQR)s7fjQp*zND;jAUGN?bppSw2}&AlbQ-'
-    'N3%#uRi?5jR;)l4Zwi~QTo_K+0CC+LMS)y#5b8S{Vy1NM=c?VQXI|@eCMgqgVL|4oGXjyXkJ^K=#uH`}u>wE)5%-'
-    '}IJCHE7K*S=@X(k&yhuzRsPH;bwLdGiA6_V5v^eT!)$~6T85=!fag$GYSY0Z{)Ru~%$%E}`y^;3vZi6r?ls+yNWXN(|6BXJ0{HWH'
-    '|z{c>je_;oc#N>;;1X4Q0Q-FzQrK!z>=GW5zIL$ALlIp&upibGj3lz-YqCPyX7NG0DGlja#@bF`r~l*d!ZvuP?il0_xeOn%||IyC'
-    '=_g$V_E=0->jqS>Ev)SFCKYgAq^v{(X082$#l;r@YoALGn1cn!+d06Lvm$fufel}!{_)|FLQ2wZk&Xw7z!+*j-tRrO$<3nf-'
-    '7d@@B5NGVt)Y6PiT&y7h#O0`ndtoWj`YFxaCNiy;rxp;ZdRiaC>wI7P2D595=lsGK+O{&TTuKuy%l-mQj6fz-'
-    '~g~cQohASfcK`xe2wk>A9M&^+pxM7R~UK1)21YoQmg4NQHCOnlC!cuEH!&}>U2=;JQ>O58HO5`OuZ3H57bWAPEA3KD;Bxo5$cnpG'
-    'QoZjW{1~&FNJt^hG^x0hnlvY?k35>#Pkn;2$fICfzPUragkn)<=30arM#3mt_$@wlK=o5R?Bt=5@C@Lkf+SH7e<$Qy5Wh`C%xJyU'
-    '4?4$skX#z!5WTIQeCn*=GUM`s4ueltY^fr)$(jxQ~_!eaW?ZOU->L}^7ZmI5#4owm`Ox(2;b!TO9I)=3Ut*NS^ZD(A-DRF_6>P-'
-    'Z(wr1n-VnJkMA~%VIJ9-'
-    'f@BuqIb@#t%z0uKr$zI7H!o7#8qBF?F0QGlX;y|spI_9&n#ZpnF1Br8Q1=xuDXXEKJvGH6VV(Nm3ys=&OfR)O*O09K#Z79vxV!B{'
-    '`^=CK;xOvo$L*<d&9MZ&Xp%TW&^E+IH&d(;S=)TBsQ7Ll^O#%}m|XO~z?bs~*yg%tod<oq?w8ZsgwFEg9S!$rzXi>wb=Xc2||(9s'
-    'iAX`~621z<jwEMT6kqEOsl&6Kk#`HkZ{EPd*yP)}TqF{xZ_PF~d;oh(45XEN~Bl_K0FgbVfbbLJDo%a^IpDssR<ibjG;O*!h67R4'
-    'N}z7wc$ymG!J_klLE%4D*Y6RTX+97ru4Q_1lv`HZ$f!1RPdjB=e=QrfprDpC=-'
-    '*rqDk)Qa>r+<+9A&{9Wv8RRs{7(O{H3B1uXA2LIiYZxavw3Q=cp+yoyCI!U(sybvFyj8b>;*5eC!dihJURB4bOl`dky~+ISfhYj0'
-    'd=p>$DbJ)SqWq%~LL;Wv60?P0Q}?w|b^`i}xeD>bY^3oY-Ubyw)wIBfO;f2#$i>E3L*ik}#@wlS$Gu)=fyTo^E1w6v?NnNI+xUo<'
-    'q$q)yk&2_~=<55p5t2jvX%OC7!J^((WO!EVG(_2@lsD?14fREoNNtVUo@kWyOa<>z(0Wz#15!;B0%`mtmrm8<#;cGlRr+Ug<d~{n'
-    'Fc^%TQ49UTWgq#9kqbqCLw}rFaOmU_6bazBbYL1d=2WGC73?_pD;gvnM>BTd{Kb8((VV3hq9iDT@v(=MPMoLu07eqHh2+EZ+Z3k0'
-    '5IC&6#Q3*DHxkW)POe)fm3Cs4>4aTlrt<Amv#5im^r5X+>kC!-v2XbU*vq)NZys88|NntQ0?7'
+    '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'
     )
 )).decode("utf-8"))
-_REBALANCE_ACTIONS = _LEGACY_ACTIONS
+_LEGACY_ACTIONS = _LEAN_ACTIONS
+_REBALANCE_ACTIONS = _LEAN_ACTIONS
+del _LEAN_ACTIONS
 _PRICE_FLOOR = 1
 _DEMAND_ALPHA = 0.25
 _MARKET_PARAMS = {
@@ -168,7 +173,11 @@ _SHOP_PRODUCTS = {
     "FARMERS_MARKET": ("WHEAT", "CARROT", "TOMATO", "STRAWBERRY"),
 }
 _WEED_STATE = {0: {}, 1: {}}
-_WEED_REPLAY_STEPS = 8
+_SALE_STATE = {0: {}, 1: {}}
+_WEED_BLOCKED_OPS = {"BUILD_PASTURE", "BUILD_COOP", "PLANT", "PLACE"}
+_PREMIUM_ITEMS = ("MELON", "MILK", "STRAWBERRY", "WOOL")
+_TERMINAL_ROUTE_TURNS = 1
+_TERMINAL_MIN_LOAD_VALUE = 300
 
 
 def _get(value, key, default=None):
@@ -221,50 +230,55 @@ def _tile_at(farm, position):
         return "LOCKED"
 
 
-def _trace_actor_action(actions, step, actor):
-    trace = actions[min(max(int(step), 0), len(actions) - 1)] or {}
-    if actor == "farmer":
-        return list(trace.get("farmer") or ["PASS"])
-    hands = trace.get("hands", []) or []
-    return list(hands[actor] if actor < len(hands) else ["PASS"])
-
-
 def _weed_repair_action(obs, action, actions, step):
     action = _align_hands(action, obs)
     seat = _seat(obs)
     game = _WEED_STATE[seat]
-    if step == 0 or step < game.get("last_step", -1):
-        game = {"last_step": step, "active": {}}
+    day = _positive_count(_get(obs, "day", step // 24))
+    previous_day = game.get("day") if game else None
+    if (
+        not game
+        or step == 0
+        or step <= game.get("last_step", -1)
+    ):
+        game = {"last_step": step, "day": day, "pending": {}}
         _WEED_STATE[seat] = game
+    elif day != previous_day:
+        # Hired hands disappear at day end, so their actor indices cannot keep
+        # delayed actions.  The permanent farmer (index 0) persists and keeps
+        # its queue across the boundary.
+        farmer_queue = game.get("pending", {}).get(0)
+        game["pending"] = {0: farmer_queue} if farmer_queue else {}
     game["last_step"] = step
+    game["day"] = day
+
+    # Preserve the last two turns for endgame banking and liquidation.
+    if step >= len(actions) - 2:
+        return action
+
     farm = _farm(obs, seat)
     positions = [_get(farm, "farmer"), *list(_get(farm, "hands", []) or [])]
     unit_actions = [action.get("farmer", ["PASS"]), *list(action.get("hands") or [])]
-    active = game["active"]
-
-    for actor, transaction in list(active.items()):
-        index = 0 if actor == "farmer" else int(actor) + 1
-        if index >= len(unit_actions):
-            active.pop(actor, None)
-            continue
-        age = step - transaction["start"]
-        if age == 1:
-            unit_actions[index] = list(transaction["intended"])
-        elif 2 <= age <= 1 + _WEED_REPLAY_STEPS:
-            unit_actions[index] = _trace_actor_action(actions, step - 1, actor)
-        else:
-            active.pop(actor, None)
+    pending = game["pending"]
 
     for index, (position, intended) in enumerate(zip(positions, unit_actions)):
-        actor = "farmer" if index == 0 else index - 1
-        if actor in active or not isinstance(intended, list) or not intended:
+        intended = list(intended) if isinstance(intended, list) and intended else ["PASS"]
+        queue = pending.get(index)
+        if queue:
+            unit_actions[index] = list(queue.pop(0))
+            if intended[0] != "PASS":
+                queue.append(intended)
+            if queue:
+                pending[index] = queue
+            else:
+                pending.pop(index, None)
             continue
-        if intended[0] not in ("BUILD_PASTURE", "PLANT"):
+        if intended[0] not in _WEED_BLOCKED_OPS:
             continue
         tile = _tile_at(farm, position)
         if not isinstance(tile, dict) or tile.get("kind") != "WEED":
             continue
-        active[actor] = {"start": step, "intended": list(intended)}
+        pending[index] = [intended]
         unit_actions[index] = ["DIG"]
 
     action["farmer"] = unit_actions[0] if unit_actions else ["PASS"]
@@ -287,10 +301,30 @@ def _shape(name, value):
     raise ValueError(name)
 
 
-def _market_price(item, inventory):
-    base, equilibrium, scale, below_func, below_target, above_func, above_target = (
-        _MARKET_PARAMS[item]
+def _market_parameters(item, configuration=None):
+    names = (
+        "base", "I0", "T", "below_func", "below_target",
+        "above_func", "above_target",
     )
+    values = list(_MARKET_PARAMS[item])
+    configured = _get(configuration, "marketParams", {}) or {}
+    override = _get(configured, item, {}) or {}
+    for index, name in enumerate(names):
+        value = _get(override, name, None)
+        if value is not None:
+            values[index] = value
+    return values
+
+
+def _market_price(item, inventory, configuration=None):
+    base, equilibrium, scale, below_func, below_target, above_func, above_target = (
+        _market_parameters(item, configuration)
+    )
+    base = float(base)
+    equilibrium = int(equilibrium)
+    scale = max(1.0, float(scale))
+    below_target = float(below_target)
+    above_target = float(above_target)
     if inventory < equilibrium:
         amplitude = below_target * base / _shape(below_func, scale)
         price = base + amplitude * _shape(below_func, equilibrium - inventory)
@@ -309,7 +343,7 @@ def _is_sell(order):
     )
 
 
-def _impact_score(obs, order):
+def _impact_score(obs, order, configuration=None):
     if not _is_sell(order):
         return float("-inf")
     item = str(order[1])
@@ -322,9 +356,15 @@ def _impact_score(obs, order):
     prices = _get(market, "prices", {}) or {}
     current_inventory = int(_get(inventory, item, 10000) or 0)
     current_quote = float(
-        _get(prices, item, _market_price(item, current_inventory)) or 0
+        _get(
+            prices,
+            item,
+            _market_price(item, current_inventory, configuration),
+        ) or 0
     )
-    later_quote = float(_market_price(item, current_inventory + quantity))
+    later_quote = float(
+        _market_price(item, current_inventory + quantity, configuration)
+    )
     return float(quantity) * max(0.0, current_quote - later_quote)
 
 
@@ -363,7 +403,7 @@ def _demand_per_day(obs, configuration, item):
 
 
 def _order_score(obs, configuration, order):
-    score = _impact_score(obs, order)
+    score = _impact_score(obs, order, configuration)
     if _regime(configuration) != "rebalance" or score <= 0 or not _is_sell(order):
         return score
     item = str(order[1])
@@ -393,6 +433,328 @@ def _rank_sell_slots(obs, action, configuration):
     return action
 
 
+def _positive_count(value):
+    try:
+        return max(0, int(value or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _isolated_sale_revenue(obs, configuration, order):
+    """Exact own-order revenue if no concurrent opponent order hits this item."""
+    if not _is_sell(order):
+        return 0
+    item = str(order[1])
+    quantity = _positive_count(order[2])
+    market = _get(obs, "market", {}) or {}
+    inventories = _get(market, "inventory", {}) or {}
+    quotes = _get(market, "prices", {}) or {}
+    inventory = _positive_count(_get(inventories, item, 10000))
+    revenue = 0
+    for unit in range(quantity):
+        if unit == 0:
+            price = _positive_count(
+                _get(
+                    quotes,
+                    item,
+                    _market_price(item, inventory, configuration),
+                )
+            )
+        else:
+            price = _market_price(item, inventory, configuration)
+        price = max(_PRICE_FLOOR, int(price))
+        revenue += price
+        # At the price floor, the engine buys the unit without increasing the
+        # market inventory.  Future units therefore remain responsive to buys.
+        if price > _PRICE_FLOOR:
+            inventory += 1
+    return revenue
+
+
+def _shed_products(obs):
+    """Return product counts that SELL can actually access this turn."""
+    private = _get(obs, "private", {}) or {}
+    shed = _get(private, "shed", {}) or {}
+    return {
+        item: _positive_count(_get(shed, item, 0))
+        for item in _MARKET_PARAMS
+        if _positive_count(_get(shed, item, 0)) > 0
+    }
+
+
+def _episode_steps(configuration):
+    return max(1, _positive_count(_get(configuration, "episodeSteps", 720)) or 720)
+
+
+def _is_final_action(obs, configuration):
+    # Kaggle's episodeSteps includes the initial state, hence the last action is
+    # normally numbered episodeSteps - 2 (718 for the standard 720-step game).
+    step = _positive_count(_get(obs, "step", 0))
+    return step >= max(0, _episode_steps(configuration) - 2)
+
+
+def _shed_access(farm):
+    size = len(_get(farm, "tiles", []) or []) or 10
+    half = size // 2
+    return {
+        (half - 1, half - 1), (half, half - 1),
+        (half - 1, half), (half, half),
+    }
+
+
+def _position(value):
+    try:
+        return int(value[0]), int(value[1])
+    except (IndexError, TypeError, ValueError):
+        return None
+
+
+def _inventory_value(obs, inventory):
+    prices = _get(_get(obs, "market", {}) or {}, "prices", {}) or {}
+    return sum(
+        _positive_count(count) * _positive_count(_get(prices, item, 1))
+        for item, count in (inventory or {}).items()
+        if item in _MARKET_PARAMS
+    )
+
+
+def _route_to_shed(position, sheds, farm):
+    """Return one legal Manhattan step toward a shed-access tile."""
+    if position is None or not sheds:
+        return ["PASS"]
+    x, y = position
+    target = min(
+        sheds,
+        key=lambda q: (abs(q[0] - x) + abs(q[1] - y), q[1], q[0]),
+    )
+    tx, ty = target
+    candidates = []
+    if tx < x:
+        candidates.append(("WEST", (x - 1, y)))
+    if tx > x:
+        candidates.append(("EAST", (x + 1, y)))
+    if ty < y:
+        candidates.append(("NORTH", (x, y - 1)))
+    if ty > y:
+        candidates.append(("SOUTH", (x, y + 1)))
+    tiles = _get(farm, "tiles", []) or []
+    size = len(tiles)
+    for operation, (nx, ny) in candidates:
+        if 0 <= nx < size and 0 <= ny < size:
+            return [operation]
+    return ["PASS"]
+
+
+def _terminal_bank(obs, action, configuration):
+    """Route valuable reachable loads to the shed during the final window."""
+    step = _positive_count(_get(obs, "step", 0))
+    final_step = max(0, _episode_steps(configuration) - 2)
+    first_route_step = max(0, final_step - _TERMINAL_ROUTE_TURNS)
+    if step < first_route_step or step >= final_step:
+        return action
+    action = _align_hands(action, obs)
+    farm = _farm(obs, _seat(obs))
+    positions = [_get(farm, "farmer"), *list(_get(farm, "hands", []) or [])]
+    inventories = list(
+        _get(_get(obs, "private", {}) or {}, "inventories", []) or []
+    )
+    unit_actions = [action["farmer"], *action["hands"]]
+    sheds = _shed_access(farm)
+    turns_remaining = final_step - step
+    for index, position in enumerate(positions):
+        inventory = inventories[index] if index < len(inventories) else {}
+        load = sum(_positive_count(value) for value in (inventory or {}).values())
+        pos = _position(position)
+        if load <= 0 or pos is None or index >= len(unit_actions):
+            continue
+        if pos in sheds:
+            unit_actions[index] = ["DROP"]
+            continue
+        distance = min(
+            abs(pos[0] - target[0]) + abs(pos[1] - target[1])
+            for target in sheds
+        )
+        value = _inventory_value(obs, inventory)
+        scheduled = unit_actions[index] if unit_actions[index] else ["PASS"]
+        safe_override = scheduled[0] == "PASS"
+        if distance + 1 <= turns_remaining and (
+            value >= _TERMINAL_MIN_LOAD_VALUE or safe_override
+        ):
+            unit_actions[index] = _route_to_shed(pos, sheds, farm)
+    action["farmer"] = unit_actions[0]
+    action["hands"] = unit_actions[1:]
+    return action
+
+
+def _terminal_liquidation(obs, action, configuration):
+    step = _positive_count(_get(obs, "step", 0))
+    final_step = max(0, _episode_steps(configuration) - 2)
+    if step < max(0, final_step - _TERMINAL_ROUTE_TURNS):
+        return action
+    action = _copy_action(action)
+    orders = [
+        ["SELL", item, quantity]
+        for item, quantity in _shed_products(obs).items()
+    ]
+    orders.sort(
+        key=lambda order: (
+            _isolated_sale_revenue(obs, configuration, order),
+            _order_score(obs, configuration, order),
+            order[1],
+        ),
+        reverse=True,
+    )
+    limit = _positive_count(
+        _get(configuration, "maxMarketOrdersPerTurn", 10)
+    ) or 10
+    action["market"] = orders[:limit]
+    return action
+
+
+def _opening_feed_first(action, step):
+    """Put the opening feed purchase before animals and hires."""
+    if step != 0:
+        return action
+    action = _copy_action(action)
+    market = action["market"]
+    for index, order in enumerate(market):
+        if len(order) >= 3 and order[:2] == ["BUY_PRODUCT", "WHEAT"]:
+            action["market"] = [market[index], *market[:index], *market[index + 1:]]
+            break
+    return action
+
+
+def _reduce_sale(action, item, quantity):
+    """Repay a previous pull-forward without making any count negative."""
+    remaining = _positive_count(quantity)
+    market = []
+    for raw in action.get("market", []) or []:
+        order = list(raw)
+        if remaining and _is_sell(order) and order[1] == item:
+            sold = _positive_count(order[2])
+            reduction = min(sold, remaining)
+            sold -= reduction
+            remaining -= reduction
+            if sold == 0:
+                continue
+            order[2] = sold
+        market.append(order)
+    action["market"] = market
+    return remaining
+
+
+def _town_demand_now(obs, item, step, configuration):
+    """Whether town demand will replenish this item after market actions."""
+    turns_per_day = _positive_count(_get(configuration, "turnsPerDay", 24)) or 24
+    center_interval = _positive_count(
+        _get(configuration, "townCenterSellInterval", turns_per_day)
+    ) or turns_per_day
+    if item != "FERTILIZER" and step % center_interval == 0:
+        return True
+    shop_interval = _positive_count(
+        _get(configuration, "townShopSellInterval", 4)
+    ) or 4
+    if step % shop_interval:
+        return False
+    town = _get(obs, "town", {}) or {}
+    for shop in list(_get(town, "unlocked_shops", []) or []):
+        if item in _SHOP_PRODUCTS.get(str(shop), ()):
+            return True
+    return False
+
+
+def _pickup_reserve(action, item):
+    """Stock needed by same-turn worker pickups before farm actions execute."""
+    reserve = 0
+    orders = [action.get("farmer", ["PASS"]), *list(action.get("hands") or [])]
+    for order in orders:
+        if (
+            isinstance(order, (list, tuple))
+            and len(order) >= 2
+            and order[0] == "PICKUP"
+            and order[1] == item
+        ):
+            reserve += _positive_count(order[2]) if len(order) >= 3 else 1
+    return reserve
+
+
+def _existing_sell(action, item):
+    return sum(
+        _positive_count(order[2])
+        for order in (action.get("market", []) or [])
+        if _is_sell(order) and order[1] == item
+    )
+
+
+def _premium_front_run(obs, action, actions, step, configuration):
+    """Move only tomorrow's premium sales to today, then conserve quantity."""
+    seat = _seat(obs)
+    state = _SALE_STATE[seat]
+    if not state or step == 0 or step <= state.get("last_step", -1):
+        state = {"last_step": step, "debt": {}}
+        _SALE_STATE[seat] = state
+    state["last_step"] = step
+    debt = state["debt"]
+    action = _copy_action(action)
+
+    due = dict(debt.pop(step, {}))
+    for item, quantity in due.items():
+        unpaid = _reduce_sale(action, item, quantity)
+        if unpaid:
+            following = debt.setdefault(step + 1, {})
+            following[item] = following.get(item, 0) + unpaid
+
+    final_step = max(0, _episode_steps(configuration) - 2)
+    future_step = step + 1
+    if (
+        step >= final_step - 1
+        or future_step >= len(actions)
+    ):
+        return action
+    limit = _positive_count(
+        _get(configuration, "maxMarketOrdersPerTurn", 10)
+    ) or 10
+    shed = _shed_products(obs)
+    moved = {}
+    for item in _PREMIUM_ITEMS:
+        if _town_demand_now(obs, item, step, configuration):
+            continue
+        planned = sum(
+            _positive_count(order[2])
+            for order in (actions[future_step].get("market", []) or [])
+            if _is_sell(order) and order[1] == item
+        )
+        if planned <= 0:
+            continue
+        committed = _existing_sell(action, item)
+        available = max(
+            0,
+            shed.get(item, 0) - committed - _pickup_reserve(action, item),
+        )
+        quantity = min(planned, available)
+        if quantity <= 0:
+            continue
+        existing = next(
+            (
+                order for order in action["market"]
+                if _is_sell(order) and order[1] == item
+            ),
+            None,
+        )
+        if existing is not None:
+            existing[2] = _positive_count(existing[2]) + quantity
+        elif len(action["market"]) < limit:
+            action["market"].append(["SELL", item, quantity])
+        else:
+            continue
+        moved[item] = moved.get(item, 0) + quantity
+    if moved:
+        tomorrow = debt.setdefault(future_step, {})
+        for item, quantity in moved.items():
+            tomorrow[item] = tomorrow.get(item, 0) + quantity
+    return action
+
+
 def agent(obs, configuration=None):
     try:
         actions = (
@@ -404,7 +766,14 @@ def agent(obs, configuration=None):
         action = _weed_repair_action(
             obs, _copy_action(actions[step]), actions, step
         )
-        return _align_hands(_rank_sell_slots(obs, action, configuration), obs)
+        action = _opening_feed_first(action, step)
+        action = _premium_front_run(
+            obs, action, actions, step, configuration
+        )
+        action = _rank_sell_slots(obs, action, configuration)
+        action = _terminal_bank(obs, action, configuration)
+        action = _terminal_liquidation(obs, action, configuration)
+        return _align_hands(action, obs)
     except Exception:
         farm = _farm(obs, _seat(obs))
         return {

@@ -68,4 +68,4 @@ Evidence: `research/v50_latest_934_results.csv`.
 
 ## Decision
 
-**V50 is submit-ready, but has not been uploaded.** It passes the registered local gates, improves all three failure families, and beats V27 on the existing public tape league. Stop optimization here pending the user's submission decision; do not spend a Kaggle submission automatically.
+V50 passed the registered local gates, improves all three failure families, and beats V27 on the existing public tape league. It was uploaded as submission **55547470** on 2026-08-16 08:12:26 UTC. Keep `55504047` as the incumbent reference until the new submission reaches COMPLETE and has Public replay evidence.

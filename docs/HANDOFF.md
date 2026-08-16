@@ -30,12 +30,13 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 - Submission review: `docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md`
 - Remaining submissions reported after submit: 2
 
-## Current submit-ready challenger
+## Current challenger
 
+- Submission ref: **55547470**
 - Candidate: `research/agents/v50_adaptive_replay_policy.py`
 - SHA256: `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`
 - Evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`
-- Decision: local gate passed; not copied to `submission/main.py`; not uploaded.
+- Status: **PENDING**; keep 55504047 as incumbent reference until COMPLETE and Public replay review.
 
 ## Latest live snapshot
 
@@ -111,11 +112,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Keep `55504047`, `agents/main.py`, and `submission/main.py` unchanged.
-2. V50 is the current submit-ready challenger: `research/agents/v50_adaptive_replay_policy.py`.
-3. Review `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md` and its artifact SHA256.
-4. If approved, copy V50 to `submission/main.py`, run the final artifact/hash check, then use `tools/submit.py`; otherwise keep 55504047 active.
-5. Do not start another parameter experiment: V49 was rejected and V50 passed the registered gate.
+1. Query submission `55547470` until status is `COMPLETE`.
+2. Record rating/rank and download its first Public replay.
+3. Update `SUBMISSION_REVIEW_55547470.md`, README, and replay registry.
+4. Review after 5 Public episodes before any replacement decision.
+5. Do not start another experiment while V50 is pending; keep `55504047` as incumbent reference.
 
 Useful commands:
 
