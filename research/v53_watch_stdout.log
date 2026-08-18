@@ -1,0 +1,16 @@
+[t=0] eps_logged=21 score=1955.8
+[t=1] eps_logged=23 score=1983.2
+[t=2] eps_logged=24 score=2003.7
+[t=3] eps_logged=25 score=2028.6
+[t=4] eps_logged=26 score=2007.5
+[t=5] eps_logged=27 score=1990.0
+  stable x1 (2007.5->1990.0)
+[t=6] eps_logged=29 score=1952.5
+[t=7] eps_logged=30 score=1972.3
+  stable x1 (1952.5->1972.3)
+[t=8] eps_logged=31 score=1986.0
+  stable x2 (1972.3->1986.0)
+[t=9] eps_logged=32 score=1969.0
+  stable x3 (1986.0->1969.0)
+CONVERGED: final score=1969.0
+watch end

@@ -19,10 +19,11 @@
 - To restore V52 (not recommended): `submission/main_v52_backup.py`.
 - Active 55600926 review after COMPLETE and first Public episodes.
 
-## Post-submit status (updated)
+## Convergence (final)
 
-- COMPLETE; first 10 Public episodes: **10W-0L** (no losses).
-- Win margins vs the 8COW/6SHEEP meta mainstream (5 of 10 opponents): +16.6k / +36.2k / +30.9k / +22.2k / +22.1k — all comfortable.
-- Win margins vs other configs: +5.2k..+135.4k.
-- Rating climbing: 600 → 1199.9 → 1311.9 → leaderboard 1438.5 (rank 1496), still calibrating toward the original V50 level (~2000).
-- Leaderboard mechanism confirmed: follows the latest active submission's live Elo, reset on each new submission; repeated resubmission of the same artifact is self-harming (reset + re-climb).
+- Watched until convergence (3 consecutive checks |dScore|<=20): **final score 1969.0** after 32 Public episodes.
+- Overall: **24W-8L (75%)**. Leaderboard snapshot: **1926.8, rank 908/5165** (TOP500 cutoff 2239.8).
+- Opponent mix: cow8-based 18 games (11 cow8/4, 5 cow8/6, 2 cow10/4) — vs cow8-family **11W-5L**.
+- The 8 losses are all small/medium margins (-318..-7820) vs cow8/4, cow10/4, cow6/12, cow6/8 — no blowouts.
+- Conclusion: V53 (=V50 stateful 8/4) reached equilibrium at its historical level (~1992). It IS the active submission; no resubmission needed (resubmitting resets rating).
+- Remaining gap to TOP500: ~310 points. No candidate proven stronger; do not submit again.
