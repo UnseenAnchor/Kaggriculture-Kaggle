@@ -42,3 +42,16 @@ Gate criteria: base gates intact (starter/Hamburger/controls no losses), ≥2 in
 ## Decision
 
 Accept as challenger and submit. V50 (`55547470`, ~2093) is the current leader but its win rate is deteriorating against the expansion family; V52 reproduces that family's dominant branch and beats V50 on the tape league, two failure families, and head-to-head.
+
+## Late-meta head-to-head verification (added after submission)
+
+V52 vs the three strongest opponents from V50's final window (all beat V50 online), held-out dev seeds × both seats:
+- vs sokoranohimazin (6/12, -24,471 vs V50): **8W-0L**, mean +1,719
+- vs freddy (10/4, -18,064 vs V50): **8W-0L**, mean +24,070
+- vs moshel (6/12, -14,795 vs V50): **5W-3L**, mean +343
+
+Combined **21W-3L** on held-out seeds. This confirms V52 repairs V50's late-window expansion weakness. Weed robustness was also confirmed empirically on live games: 5 Public V52 episodes carried 25–29 weeds on the farm and still won (the route is animal-heavy; pasture tiles once built are stable; the tape's own 19 DIG actions cover critical positions).
+
+## Live status after submission
+
+55593198: COMPLETE, 5 Public episodes all wins (margin +55,943 / +23,624 / +37,018 / +18,889 / +15,815), score climbing 839.2 → 1089.8 → 1179.9. Tracking slightly ahead of V50's same-checkpoint trajectory (V50: 4W-0L @ 1028.4).
