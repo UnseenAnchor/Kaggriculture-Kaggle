@@ -32,14 +32,12 @@ Make the active Kaggriculture submission reach TOP500 through public research, d
 
 ## Current challenger
 
-- Submission ref: **55547470**
-- Candidate: `research/agents/v50_adaptive_replay_policy.py`
-- SHA256: `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`
-- Evidence: `docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md`
-- Status: **COMPLETE**, Public score **2069.5** after 57 episodes; downloaded record **37W-20L-0T**.
-- V50 leads 55504047's current **1732.9** by **336.6**.
-- Newest 39-episode block: 21W-18L, mean margin +824; two clear expansion losses are 93587364 and 93604505.
-- V50 is the leading challenger; keep 55504047 as rollback reference while auditing expansion and market-timing losses.
+- Submission ref: **55593198** (V52 dominant 6-COW/12-SHEEP expansion branch)
+- Candidate: `research/agents/online/episode_93730164_opponent.py`
+- SHA256: `41d0398780dd41951e04ef923052c4ae66244ebfcb1c03cf6b9251f6f5e8a5c7`
+- Evidence: `docs/reviews/iterations/ITERATION_V52_DOMINANT_EXPANSION_BRANCH.md`
+- Status: **PENDING**
+- Rollback: V50 artifact `research/agents/v50_adaptive_replay_policy.py` (SHA256 `3dbcc2a4e02fb9ba2ab2211f80354ab93d5f11b90768ca5da079d486a34519a0`, Public score 2093.4).
 
 ## Latest live snapshot
 
@@ -115,11 +113,11 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Keep `55547470` (V50) as the leading challenger; it is already submitted and leads 55504047 by ~336 rating.
-2. V51 expansion-route replacements were all rejected (ITERATION_V51); do not retry bare tape routes or port the V50 execution layer to other tapes.
-3. Continue collecting Public episodes and update the registry (currently 125 episodes).
-4. A new candidate must first explain the 6-COW/8-SHEEP expansion family causally and pass the full local gate without failure-family regression.
-5. Keep 55504047 as rollback reference; do not spend another submission until such a candidate exists.
+1. Query submission `55593198` until COMPLETE; record rating with episode count.
+2. Download first Public replays and compare V52's trajectory to V50 at equal episode counts.
+3. V50 final snapshot: 187 episodes, 89W-98L, score 2093.4, win rate deteriorating (last block 9W-18L); 55/96 losses vs expansion family.
+4. If V52 collapses online, resubmit V50 artifact (rollback path documented in SUBMISSION_REVIEW_55593198.md).
+5. Do not start a new experiment until V52 has at least 5 Public episodes.
 
 Useful commands:
 

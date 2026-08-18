@@ -39,7 +39,8 @@ docs/reviews/iterations/        每轮实验与决策复盘
 | 1 | 2026-08-14 | [55501712](https://www.kaggle.com/competitions/kaggriculture/submissions/55501712) | v4 demand-adaptive + priority scheduler | starter 16W-0L，均值65,042；elite tape均值46,403 | **664.0**（4局） | 3W-1L | 首局输867，后续3胜；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501712.md) |
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
 | 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1774.6**（45局snapshot） | 37W-8L-0T | rank 996/4421，进入TOP1000；TOP500仍需2435.3；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
-| 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **2069.5**（57局） | 37W-20L-0T | 领先55504047的1732.9约336.6；最新39局为21W-18L，继续审计扩张败局；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
+| 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **2093.4**（187局） | 89W-98L-0T | 胜率恶化（扩张族55/96败局），被 V52 替换；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
+| 5 | 2026-08-16 | [55593198](https://www.kaggle.com/competitions/kaggriculture/submissions/55593198) | V52 dominant 6-cow/12-sheep expansion branch | tape league 18W-6L-2T 胜V50；失败族8W-0L/7W-1L；head-to-head 6W-2L | **PENDING** | — | 复现反复击败V50的公开策略家族主导分支；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55593198.md) |
 
 ## 关键经验
 
@@ -94,4 +95,5 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] 提交 V50 challenger `55547470`；18个 Public episode 为16W-2L，score 1993.5
 - [x] V50线上 score 超过55504047（2069.5 vs 1732.9）；57局37W-20L，继续审计扩张败局并保留v27回滚参考
 - [x] V51扩张路线替换实验：93604505/93587364/93578320裸路线与93604505+执行层全部未通过闸门，否决
-- [ ] 保留55547470继续收敛；下一候选须先解决扩张族因果链且不回归失败族
+- [x] V52主导扩张分支（6牛/12羊，ep 93730164）：全闸门通过，tape league 胜V50，提交 `55593198`
+- [ ] 等待55593198 COMPLETE；V50 artifact 保留为回滚（SHA256 3dbcc2a4...4519a0）
