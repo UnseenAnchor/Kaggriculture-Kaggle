@@ -19,7 +19,10 @@
 - To restore V52 (not recommended): `submission/main_v52_backup.py`.
 - Active 55600926 review after COMPLETE and first Public episodes.
 
-## Post-submit plan
-1. Confirm COMPLETE; record rating.
-2. Download first Public episodes; verify V50's restored trajectory.
-3. Re-open B-direction research (a stateful candidate that beats V50) only with causal evidence.
+## Post-submit status (updated)
+
+- COMPLETE; first 10 Public episodes: **10W-0L** (no losses).
+- Win margins vs the 8COW/6SHEEP meta mainstream (5 of 10 opponents): +16.6k / +36.2k / +30.9k / +22.2k / +22.1k — all comfortable.
+- Win margins vs other configs: +5.2k..+135.4k.
+- Rating climbing: 600 → 1199.9 → 1311.9 → leaderboard 1438.5 (rank 1496), still calibrating toward the original V50 level (~2000).
+- Leaderboard mechanism confirmed: follows the latest active submission's live Elo, reset on each new submission; repeated resubmission of the same artifact is self-harming (reset + re-climb).
