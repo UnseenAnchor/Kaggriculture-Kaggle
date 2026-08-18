@@ -6,7 +6,8 @@
 - Submitted: 2026-08-16 (after V50 reached 2093.4 with deteriorating win rate)
 - Description: `V52 dominant 6-cow/12-sheep expansion branch (ep 93730164); beats V50 on tape league, 2 failure families, head-to-head 6W-2L`
 - Initial status: PENDING; later **COMPLETE**
-- Public score: **839.2** after 2 Public episodes (both wins: +55,943 vs Surya Vijjeswarapu, +23,624 vs ayushk_empire)
+- Public score: **1089.8** after 4 Public episodes — all wins (+55,943 / +23,624 / +37,018 / +18,889, mean +33,869)
+- Same-checkpoint comparison: V50 was 4W-0L at 1028.4, so V52 is tracking slightly ahead.
 - Note: low absolute score is early rating calibration, not losses. Pool-wide drift in the same window: V50 2093.4 → 2002.2, 55504047 1732.9 → 1640.2.
 - Source: `research/agents/online/episode_93730164_opponent.py`
 - Submitted artifact: `submission/main.py`
