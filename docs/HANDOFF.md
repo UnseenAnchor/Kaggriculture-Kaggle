@@ -113,11 +113,10 @@ Hand PASS→CARE and all-actor PASS→CARE both produced exactly the same 73,569
 
 ## Exact next action
 
-1. Query submission `55593198` until COMPLETE; record rating with episode count.
-2. Download first Public replays and compare V52's trajectory to V50 at equal episode counts.
-3. V50 final snapshot: 187 episodes, 89W-98L, score 2093.4, win rate deteriorating (last block 9W-18L); 55/96 losses vs expansion family.
-4. If V52 collapses online, resubmit V50 artifact (rollback path documented in SUBMISSION_REVIEW_55593198.md).
-5. Do not start a new experiment until V52 has at least 5 Public episodes.
+1. Confirm `55600926` (V53 = V50 restore) COMPLETE; record rating with episode count.
+2. Download first Public episodes; compare V50's restored trajectory against its earlier 187-episode run.
+3. B-direction: a stateful candidate that beats V50 itself — only with causal evidence, not tape reproductions.
+4. Keep V52 backup at `submission/main_v52_backup.py`; V50 artifact is active.
 
 Useful commands:
 
@@ -142,5 +141,5 @@ Before adding this handoff, the working tree was clean. Most recent research com
 ## New-session bootstrap prompt
 
 ```text
-切换到 E:\AI-Coding\09-Kaggriculture。先读取 AGENTS.md、docs/HANDOFF.md、docs/WORKFLOW.md 和 docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md。V50 已达到可提交状态但尚未上传；不要自动提交，不要修改 active 55504047，除非用户明确批准。
+切换到 E:\AI-Coding\09-Kaggriculture。先读取 AGENTS.md、docs/HANDOFF.md、docs/WORKFLOW.md 和 docs/reviews/iterations/ITERATION_V50_ADAPTIVE_REPLAY_POLICY.md。当前 active 55600926（V53=V50 stateful 回滚）；V52 tape 已在线上证明劣于 V50（rating不稳+对8/6主流败）。B方向需先有因果证据再编码。勿重做已否决方向。
 ```

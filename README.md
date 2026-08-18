@@ -40,7 +40,8 @@ docs/reviews/iterations/        每轮实验与决策复盘
 | 2 | 2026-08-14 | [55501952](https://www.kaggle.com/competitions/kaggriculture/submissions/55501952) | v5-A Yarn-demand sheep scaling | online tape 0W-2L→2W-0L；starter仍16W-0L | **612.4**（2局snapshot） | 1W-1L | 局部启发式不足以跨越TOP500差距；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55501952.md) |
 | 3 | 2026-08-14 | [55504047](https://www.kaggle.com/competitions/kaggriculture/submissions/55504047) | v27 public Top-30 route / TOP500 push | online tape 12W-0L；controls 24W-0L；未见种子32W-0L | **1774.6**（45局snapshot） | 37W-8L-0T | rank 996/4421，进入TOP1000；TOP500仍需2435.3；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55504047.md) |
 | 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **2093.4**（187局） | 89W-98L-0T | 胜率恶化（扩张族55/96败局），被 V52 替换；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
-| 5 | 2026-08-16 | [55593198](https://www.kaggle.com/competitions/kaggriculture/submissions/55593198) | V52 dominant 6-cow/12-sheep expansion branch | tape league 18W-6L-2T 胜V50；失败族8W-0L/7W-1L；head-to-head 6W-2L | **PENDING** | — | 复现反复击败V50的公开策略家族主导分支；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55593198.md) |
+| 5 | 2026-08-16 | [55593198](https://www.kaggle.com/competitions/kaggriculture/submissions/55593198) | V52 dominant 6-cow/12-sheep expansion branch | tape league 18W-6L-2T（本地） | **1996.8/1290.8不稳** | 线上~15W-12L | 测试证明 meta 实为 8牛/6羊；裸 tape 被 stateful 对手压倒，rating 波动，已回滚；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55593198.md) |
+| 6 | 2026-08-18 | [55600926](https://www.kaggle.com/competitions/kaggriculture/submissions/55600926) | V53 回滚 V50 stateful 8/4 执行层 | 对8/6主流 tape 20W-0L（V52仅~11W-9L） | **PENDING** | — | 恢复最强已知 stateful artifact；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55600926.md) |
 
 ## 关键经验
 
@@ -96,4 +97,6 @@ docs/reviews/iterations/        每轮实验与决策复盘
 - [x] V50线上 score 超过55504047（2069.5 vs 1732.9）；57局37W-20L，继续审计扩张败局并保留v27回滚参考
 - [x] V51扩张路线替换实验：93604505/93587364/93578320裸路线与93604505+执行层全部未通过闸门，否决
 - [x] V52主导扩张分支（6牛/12羊，ep 93730164）：全闸门通过，tape league 胜V50，提交 `55593198`
-- [ ] 等待55593198 COMPLETE；V50 artifact 保留为回滚（SHA256 3dbcc2a4...4519a0）
+- [x] V52线上复盘：meta 实为 8牛/6羊；V52 tape rating 不稳（1996.8↔1290.8）且对 stateful 8/6 主流 15W-12L → 否决
+- [x] V53 回滚 V50 stateful 8/4：对 8/6 主流 tape 20W-0L（V52 仅 ~11W-9L），提交 `55600926`；8/6 裸 tape 与执行层移植均否决
+- [ ] 等待 55600926 COMPLETE，首位 Public episodes 对比 V50 原轨迹；B 方向（超越 V50 的 stateful 候选）需先有因果证据
