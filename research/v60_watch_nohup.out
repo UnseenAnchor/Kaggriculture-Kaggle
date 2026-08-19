@@ -1,0 +1,21 @@
+[t=0] eps_logged=5 score=1096.6
+[t=1] eps_logged=6 score=1239.2
+[t=2] eps_logged=7 score=1149.4
+[t=3] eps_logged=8 score=1020.5
+[t=4] eps_logged=10 score=1052.4
+[t=5] eps_logged=11 score=982.3
+[t=6] eps_logged=12 score=1030.2
+[t=7] eps_logged=13 score=997.4
+[t=8] eps_logged=14 score=966.4
+[t=9] eps_logged=15 score=1001.2
+[t=10] eps_logged=16 score=1036.1
+[t=11] eps_logged=17 score=1058.1
+[t=12] eps_logged=18 score=1030.8
+[t=13] eps_logged=19 score=1054.7
+[t=14] eps_logged=20 score=1075.3
+[t=15] eps_logged=21 score=1089.1
+[t=16] eps_logged=22 score=1107.7
+[t=17] eps_logged=23 score=1122.6
+CONVERGED: final score=1122.6
+watch end
+RECAP total=23 W=16 L=7 mirror=2(W1) 14+=20(W14)

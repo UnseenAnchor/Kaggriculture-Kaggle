@@ -8,6 +8,8 @@
 - [SUBMISSION_REVIEW_55547470](submissions/SUBMISSION_REVIEW_55547470.md)（57局：37W-20L-0T；score 2093.4，胜率恶化中）
 - [SUBMISSION_REVIEW_55593198](submissions/SUBMISSION_REVIEW_55593198.md)（V52 6/12 tape：rating 不稳 839→1996.8→1290.8，线上15W-12L，被stateful 8/6主流压倒，已回滚）
 - [SUBMISSION_REVIEW_55600926](submissions/SUBMISSION_REVIEW_55600926.md)（V53 = 回滚 V50 stateful 8/4，PENDING；对 8/6 主流 tape 20W-0L）
+- [SUBMISSION_REVIEW_55615556](submissions/SUBMISSION_REVIEW_55615556.md)（V60 6/8，本地强但线上弱，net 17W-23L vs V50，不主线）
+- [SUBMISSION_REVIEW_55623330](submissions/SUBMISSION_REVIEW_55623330.md)（V50 重抽，TOP700-capable；同工件重取匹配样本；重置评分后需爬回 >2052.6）
 
 ## 迭代复盘
 
@@ -40,6 +42,7 @@
 - [ITERATION_V53_ROLLBACK_V50](iterations/ITERATION_V53_ROLLBACK_V50.md)（线上 meta 实为 8牛/6羊；V52 tape 被打到 15W-12L，V50 stateful 对 8/6 tape 20W-0L → 回滚 V50，提交 55600926；8/6 复刻与执行层移植均否决）
 - [ITERATION_V54_DIRECTION_F_EXEC_LAYER](iterations/ITERATION_V54_DIRECTION_F_EXEC_LAYER.md)（方向F：发现「执行层不可移植」是 step 对齐 bug 误判；逐层剥离+全部14-animal tape 组合头对头，无 tape 能稳定击败 V50，方向F关闭）
 - [ITERATION_V60_68_EXEC](iterations/ITERATION_V60_68_EXEC.md)（V60：6牛/8羊 14-animal 主线 + V50 执行层；修 step 对齐后 vs V50 10W-2L、失败族改善、全线上族全胜，通过全部闸门 → 提交候选；V56 Bruce/v57/v58/v59/v61/v62 均否决）
+- [ITERATION_V66_V67_V68_AND_V60_RECONFIRM](iterations/ITERATION_V66_V67_V68_AND_V60_RECONFIRM.md)（TOP700 冲刺：v66 splice / v67 肥料滴灌 / v68 前探奶牛 / v69 早瓜 均否决；V60 6/8 复验 17W-23L h2h 净弱，6/8 换线关闭；配比剪刀石头无单配比通吃。**重锚实时榜：TOP700=2052.6、TOP800=1981.2，rank1010@1857.9；V50 工件历史峰值 2093.4>纯线，目标=评分缺口非强度缺口 → 重提 V50 55623330**）
 - [ITERATION_V47_ANCHORED_EXPANSION](iterations/ITERATION_V47_ANCHORED_EXPANSION.md)（完整扩张 planner 在两个 capital anchor 均输给 v27，冻结）
 - [ITERATION_V48_OPPONENT_CAPACITY_RESPONSE](iterations/ITERATION_V48_OPPONENT_CAPACITY_RESPONSE.md)（响应式第五 hand 在高供给/CARE 族均0W-8L，冻结）
 

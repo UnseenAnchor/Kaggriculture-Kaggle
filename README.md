@@ -42,6 +42,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 | 4 | 2026-08-16 | [55547470](https://www.kaggle.com/competitions/kaggriculture/submissions/55547470) | V50 adaptive 8-cow/4-sheep replay policy | starter/Hamburger 32W-0L；三个失败族全部改善；旧 tape 16W-2L | **2093.4**（187局） | 89W-98L-0T | 胜率恶化（扩张族55/96败局），被 V52 替换；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55547470.md) |
 | 5 | 2026-08-16 | [55593198](https://www.kaggle.com/competitions/kaggriculture/submissions/55593198) | V52 dominant 6-cow/12-sheep expansion branch | tape league 18W-6L-2T（本地） | **1996.8/1290.8不稳** | 线上~15W-12L | 测试证明 meta 实为 8牛/6羊；裸 tape 被 stateful 对手压倒，rating 波动，已回滚；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55593198.md) |
 | 6 | 2026-08-18 | [55600926](https://www.kaggle.com/competitions/kaggriculture/submissions/55600926) | V53 回滚 V50 stateful 8/4 执行层 | 对8/6主流 tape 20W-0L（V52仅~11W-9L） | **PENDING** | — | 恢复最强已知 stateful artifact；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55600926.md) |
+| 7 | 2026-08-19 | [55615556](https://www.kaggle.com/competitions/kaggriculture/submissions/55615556) | V60 6/8 14-animal 主线 + V50 执行层 | 本地 h2h vs V50 10W-2L；18 族全胜；失败族改善 | **PENDING** | — | 首个本地稳定击败 V50 的 14-animal 候选；见[复盘](docs/reviews/submissions/SUBMISSION_REVIEW_55615556.md) |
 
 ## 关键经验
 
