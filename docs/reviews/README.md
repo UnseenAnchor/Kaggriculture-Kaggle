@@ -38,6 +38,8 @@
 - [ITERATION_V51_EXPANSION_ROUTE_REPLACEMENT](iterations/ITERATION_V51_EXPANSION_ROUTE_REPLACEMENT.md)（扩张路线替换全部否决：tape 换seed即崩、执行层不可移植、需求选择信息不可行）
 - [ITERATION_V52_DOMINANT_EXPANSION_BRANCH](iterations/ITERATION_V52_DOMINANT_EXPANSION_BRANCH.md)（6牛12羊主导分支通过全部闸门并提交 55593198）
 - [ITERATION_V53_ROLLBACK_V50](iterations/ITERATION_V53_ROLLBACK_V50.md)（线上 meta 实为 8牛/6羊；V52 tape 被打到 15W-12L，V50 stateful 对 8/6 tape 20W-0L → 回滚 V50，提交 55600926；8/6 复刻与执行层移植均否决）
+- [ITERATION_V54_DIRECTION_F_EXEC_LAYER](iterations/ITERATION_V54_DIRECTION_F_EXEC_LAYER.md)（方向F：发现「执行层不可移植」是 step 对齐 bug 误判；逐层剥离+全部14-animal tape 组合头对头，无 tape 能稳定击败 V50，方向F关闭）
+- [ITERATION_V60_68_EXEC](iterations/ITERATION_V60_68_EXEC.md)（V60：6牛/8羊 14-animal 主线 + V50 执行层；修 step 对齐后 vs V50 10W-2L、失败族改善、全线上族全胜，通过全部闸门 → 提交候选；V56 Bruce/v57/v58/v59/v61/v62 均否决）
 - [ITERATION_V47_ANCHORED_EXPANSION](iterations/ITERATION_V47_ANCHORED_EXPANSION.md)（完整扩张 planner 在两个 capital anchor 均输给 v27，冻结）
 - [ITERATION_V48_OPPONENT_CAPACITY_RESPONSE](iterations/ITERATION_V48_OPPONENT_CAPACITY_RESPONSE.md)（响应式第五 hand 在高供给/CARE 族均0W-8L，冻结）
 
