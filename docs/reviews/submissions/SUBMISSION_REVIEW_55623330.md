@@ -1,19 +1,23 @@
-# Submission Review 55623330 (V50 re-draw)
+# Submission Review 55623330 (V50 re-draw) — FINAL
 
 ## Purpose
-TOP700 goal: V50 artifact historically reached 2093.4 live > current TOP700 cutoff 2052.6, but the previous active (55600926, identical code) had drifted to 1857.9 (~rank 1010). Since every strength candidate (v66-v69) was rejected with local gates and the live rating is matchmaking-dominated (±200 on identical bytes), the evidence-backed path was a fresh matchmaking sample of the SAME best artifact.
+TOP700 goal. Earlier hypothesis: V50 artifact historically reached 2093.4 live > TOP700 cutoff 2052.6, but previous active (55600926, identical code) had drifted to 1857.9. Since all strength candidates (v66-v69) failed local gates, the plan was to re-submit the SAME best artifact for a fresh matchmaking draw.
 
 ## Submission
 - ref: **55623330**
 - file: `submission/main.py` (SHA 3dbcc2a4..., byte-identical to `research/agents/v50_adaptive_replay_policy.py`)
-- message: V50 re-draw, TOP700-capable re-sample
-- status on upload: PENDING → first Public score **600.0** (fresh-rating reset start, like V50's original 616)
-- initial reset confirms: resubmitting resets the rating to ~600; it must climb with wins (V50 climbed 616→1992→2093 historically over 57-187 games).
+- Upload at 2026-08-19: PENDING → COMPLETE, start 600.0 (fresh-rating reset)
 
-## Watching
-- Background watch: `research/v50_55623330_watch.log` (polls `kaggle competitions submissions` every 2 min).
-- Success criterion: rating climbs toward/above **2052.6** (TOP700 line).
+## Rating trajectory (watched ~3.5 h, 2-min polls)
+600 → 681 → 757 → 819 → 894 → 1143 → 1270 → 1403 → 1712 → 1642 → 1731 → 1825 → 1800 → 1779 → 1841 → 1842 → 1858 → 1866 → 1857 → 1844 → **1848.9** → plateau 1844-1851 → final **1844.9**.
+
+## Outcome
+- Fresh draw **converged to ~1850**, the SAME stable level as the old active (55600926 = 1857.9).
+- It did **NOT** reproduce the 2069.5/2093.4 peak of submission 55547470.
+- ⇒ **V50's true sustainable matchmaking level is ~1850**, ~200 points below TOP700 (current cutoff 2052.6). The historical peak was a favorable-streak outlier not repeated by two subsequent identical submissions.
+- Resubmitting the same artifact does NOT create rating luck beyond its true level; the "re-draw" idea is falsified by this controlled experiment.
 
 ## Decision
-- Submitted at user's explicit choice (Path A). This is NOT a "new candidate" — it is the same proven V50 artifact re-drawn for favorable matchmaking.
-- Rejected candidates unchanged: v66 / v67 / v68 / v69 (see ITERATION_V66_V67_V68_AND_V60_RECONFIRM.md).
+- **Result: does not reach TOP700. No rating gain from re-draw.**
+- Active submission is 55623330 (identical V50 code, score 1844.9) — behaviorally identical to 55600926.
+- Combined with ITERATION_V66_V67_V68_AND_V60_RECONFIRM (5 rejected candidates + composition RPS proof), TOP700 (~2050) is **not achievable with the current artifact and constraints**: sustainable rating ~1850, no constraint-respecting mechanism adds real strength.
