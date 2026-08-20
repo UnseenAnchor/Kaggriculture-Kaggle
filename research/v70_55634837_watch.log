@@ -10,3 +10,5 @@ t=1787209062 1633.0
 # --- VERDICT ---
 # v70 plateau ~1633 flat 1.5-2h. V50 redraw at same elapsed time (t=9600-13200s) = 1840-1864.
 # v70 ~200+ BELOW V50 at comparable point => live NEGATIVE result. Local h2h 18W-0L did NOT transfer.
+# FINAL: v70 live-equilibrium ~1633, NEGATIVE. Rolled back to V50, resubmitted 55640613.
+# Lesson (2nd): local tape h2h non-predictive of live. V50 8/4 = live-proven artifact.
