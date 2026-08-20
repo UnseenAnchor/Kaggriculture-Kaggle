@@ -1,8 +1,15 @@
 # ITERATION_V70: T104 (10-cow / 4-sheep) — first candidate to beat the active baseline h2h
 
 - Date: (current session)
-- Status: **ACCEPT candidate — awaiting user submission decision**
+- Status: **USER-APPROVED SUBMIT (option 1)** → active baseline promoted to T104 (v70) on 2026-session.
 - Related: closes V66-V69 reject streak; first genuine mainline upgrade candidate since V53 rollback.
+
+## Baseline promotion (post-approval)
+- User chose option 1 (submit v70).
+- Backed up old baseline: `research/agents/archive/submission_V50_8cow4sheep.py.bak`, `research/agents/archive/agents_v27.py.bak`.
+- Promoted `research/agents/v70_t104.py` → `submission/main.py` AND `agents/main.py` (SHA 19b1227... all three identical).
+- Re-gated the promoted `submission/main.py` vs true live V50 baseline (`submission/main.py` prior): h2h 8W-0L standard seeds + 10W-0L fresh seeds = **18W-0L**. vs starter 8W-0L 150,637. vs V50 backup 8W-0L 95,801.
+- Note: the earlier 17W-1L h2h claim was measured vs `agents/main.py` which was v27 (ref), not the live V50; re-measured authoritative h2h vs live V50 = 18W-0L, equally decisive.
 
 ## Hypothesis (mechanism)
 The online field is cow-majority. The observed 18-game meta sample bins to
