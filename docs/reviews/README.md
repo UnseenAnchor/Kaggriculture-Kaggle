@@ -43,6 +43,7 @@
 - [ITERATION_V54_DIRECTION_F_EXEC_LAYER](iterations/ITERATION_V54_DIRECTION_F_EXEC_LAYER.md)（方向F：发现「执行层不可移植」是 step 对齐 bug 误判；逐层剥离+全部14-animal tape 组合头对头，无 tape 能稳定击败 V50，方向F关闭）
 - [ITERATION_V60_68_EXEC](iterations/ITERATION_V60_68_EXEC.md)（V60：6牛/8羊 14-animal 主线 + V50 执行层；修 step 对齐后 vs V50 10W-2L、失败族改善、全线上族全胜，通过全部闸门 → 提交候选；V56 Bruce/v57/v58/v59/v61/v62 均否决）
 - [ITERATION_V66_V67_V68_AND_V60_RECONFIRM](iterations/ITERATION_V66_V67_V68_AND_V60_RECONFIRM.md)（TOP700 冲刺：v66 splice / v67 肥料滴灌 / v68 前探奶牛 / v69 早瓜 均否决；V60 6/8 复验 17W-23L h2h 净弱，6/8 换线关闭；配比剪刀石头无单配比通吃。**重锚实时榜：TOP700=2052.6、TOP800=1981.2，rank1010@1857.9；V50 工件历史峰值 2093.4>纯线，目标=评分缺口非强度缺口 → 重提 V50 55623330**）
+- [ITERATION_V70_T104](iterations/ITERATION_V70_T104.md)（**首个本地稳定击败 active baseline 的候选**：T104 = 10牛/4羊 动作表 + V50 执行层，从 93928639 10/4 tape 拼接。h2h vs V50 9 seeds × 2 seats = **17W-1L**；starter/hamburger 无回归（均更优）；代价是对 sheep-heavy tape（6/8/6/10/5/9）0W-8L，但该族线上~0/18。线上 meta 为 cow8 主流，10/4 克制 8/4+8/6 → 最高 EV 主配比）
 - [ITERATION_V47_ANCHORED_EXPANSION](iterations/ITERATION_V47_ANCHORED_EXPANSION.md)（完整扩张 planner 在两个 capital anchor 均输给 v27，冻结）
 - [ITERATION_V48_OPPONENT_CAPACITY_RESPONSE](iterations/ITERATION_V48_OPPONENT_CAPACITY_RESPONSE.md)（响应式第五 hand 在高供给/CARE 族均0W-8L，冻结）
 

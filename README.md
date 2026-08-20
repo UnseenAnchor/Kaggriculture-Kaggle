@@ -54,6 +54,7 @@ docs/reviews/iterations/        每轮实验与决策复盘
 
 ## 下一步
 
+- [x] **T104（10牛/4羊）候选已通过本地闸门**：h2h vs V50 17W-1L、starter/hamburger 无回归（唯一代价是 sheep-heavy 稀有族 0W-8L）。待用户授权替换 baseline 并提交（见 [ITERATION_V70_T104](docs/reviews/iterations/ITERATION_V70_T104.md)）。
 - [x] 建立官方环境、固定种子双-seat评测与公开精英 tape 对照
 - [x] v4：作物限额、商店需求适配、动态清仓、优先级调度
 - [x] 提交 v4 并下载首个 Public replay
