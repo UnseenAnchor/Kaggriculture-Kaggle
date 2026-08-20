@@ -1,0 +1,12 @@
+t=~120min v70=1535.1 (cal: V50@38min=1531, @10h=1781)
+t=1787197591 1565.4
+t=1787199100 1587.3
+t=1787200607 1616.6
+t=1787202118 1628.3
+t=1787203628 1633.3
+t=1787205437 1633.3
+t=1787207247 1633.0
+t=1787209062 1633.0
+# --- VERDICT ---
+# v70 plateau ~1633 flat 1.5-2h. V50 redraw at same elapsed time (t=9600-13200s) = 1840-1864.
+# v70 ~200+ BELOW V50 at comparable point => live NEGATIVE result. Local h2h 18W-0L did NOT transfer.
