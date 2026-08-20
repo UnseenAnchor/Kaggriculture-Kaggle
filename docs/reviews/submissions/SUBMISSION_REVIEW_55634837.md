@@ -15,6 +15,9 @@
 - **Local h2h (18W-0L vs V50) did NOT transfer to live.** Same failure mode as V60 (local 10W-2L → live 1232).
 - **VERDICT: NEGATIVE — v70 underperforms V50 live by ~150-200 pts.** Recommend rollback to V50 baseline and re-submit.
 
+## Final decision
+**REJECTED at live.** Submitted 55634837; equilibrium ~1633 < V50 refs (1660-1858). Rolled back to V50 (55640613). Baseline is V50 8/4 again.
+
 ## Live score progression (Public rating)
 | poll | score |
 |---|---|

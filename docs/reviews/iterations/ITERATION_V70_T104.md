@@ -1,8 +1,8 @@
-# ITERATION_V70: T104 (10-cow / 4-sheep) — first candidate to beat the active baseline h2h
+# ITERATION_V70: T104 (10-cow / 4-sheep) — REJECTED at live (rolled back to V50)
 
-- Date: (current session)
-- Status: **USER-APPROVED SUBMIT (option 1)** → active baseline promoted to T104 (v70) on 2026-session.
-- Related: closes V66-V69 reject streak; first genuine mainline upgrade candidate since V53 rollback.
+- Status: **REJECTED (live)**. Submitted 55634837 🡒 live-equilibrium 1633 < V50. Rolled back to V50 8/4 (55640613 = 1660-1675 on this draw).
+- Outcome: local h2h 18W-0L did NOT transfer; 2nd confirmed case that local tape h2h does not predict live placement (V60 → 1232, v70 → 1633).
+- **Lesson locked**: composition/RPS changes have negative expected value live. V50 8/4 artifact is the only live-proven performer.
 
 ## Baseline promotion (post-approval)
 - User chose option 1 (submit v70).
